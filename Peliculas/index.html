@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador de Películas</title>
+    <script src="JSPeliculasV3.js"></script>
+    <link rel="stylesheet" href="CSSPeliculasV4.css">
+</head>
+<body>
+    <header>
+        <input id="buscador" type="text" placeholder="Buscar película">
+        <button id="buscarBtn">Buscar</button>
+        <button id="resetBtn">Reset</button>
+    </header>
+    <p id="numeroResultados"></p>
+    <ul id="lista"></ul>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span>
+            <h2 id="modal-titulo"></h2>
+            <img id="modal-poster" src="" alt="Poster">
+            <p id="modal-sinopsis"></p>
+            <p><strong>Género:</strong> <span id="modal-genero"></span></p>
+            <p><strong>Director:</strong> <span id="modal-director"></span></p>
+            <p><strong>Año:</strong> <span id="modal-año"></span></p>
+            <p><strong>País:</strong> <span id="modal-pais"></span></p>
+            <p><strong>Idioma:</strong> <span id="modal-idioma"></span></p>
+            <p><strong>Duración:</strong> <span id="modal-duracion"></span></p>
+            <p><strong>Rating:</strong> <span id="modal-rating"></span></p>
+        </div>
+    </div>
+    <!--<div id="modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); justify-content: center; align-items: center; z-index: 1000;">
+        <div id="modal-content" style="background: white; padding: 20px; border-radius: 8px; width: 80%; max-width: 500px; position: relative;">
+        </div>
+    </div>
+    --->
+</body>
+</html>
