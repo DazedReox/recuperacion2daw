@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buscador de Películas</title>
     <script src="index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="stylePelis.css">
 </head>
 <body>
@@ -13,10 +14,11 @@
         <button id="buscarBtn">Buscar</button>
         <button id="resetBtn">Reset</button>
     </header>
+    
     <p id="numeroResultados"></p>
     <ul id="lista"></ul>
     <div id="modal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content" style="background-color: rgba(128,128,128,0.5); padding: 20px; border-radius: 15px;">
             <span id="closeModal" class="close">&times;</span>
             <h2 id="modal-titulo"></h2>
             <img id="modal-poster" src="" alt="Poster">
@@ -24,6 +26,7 @@
             <p><strong>Género:</strong> <span id="modal-genero"></span></p>
             <p><strong>Director:</strong> <span id="modal-director"></span></p>
             <p><strong>Año:</strong> <span id="modal-año"></span></p>
+            <p><strong>Actores:</strong> <span id="modal-actores"></span></p>
             <p><strong>País:</strong> <span id="modal-pais"></span></p>
             <p><strong>Idioma:</strong> <span id="modal-idioma"></span></p>
             <p><strong>Duración:</strong> <span id="modal-duracion"></span></p>
