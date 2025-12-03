@@ -2,22 +2,9 @@ window.onload = () => {
     let peliABuscar = "";
     const apiKey = "1a3dcaad";
     let paginaActual = 1;
-    let cargando = false;
-    let lastQuery = "";
+    let cargando = false;    
 
-    const landingSection = document.getElementById("landing");         
-    const resultadosSection = document.getElementById("resultados");   
-    const reportSection = document.getElementById("report");           
-
-    const buscadorLandingEl = document.getElementById("buscadorLanding");
-    const iniciarDesdeLandingBtn = document.getElementById("iniciarDesdeLanding");
-    
-    function showSection(sectionEl) {
-        if (landingSection) landingSection.classList.add("hidden");
-        if (resultadosSection) resultadosSection.classList.add("hidden");
-        if (reportSection) reportSection.classList.add("hidden");
-        if (sectionEl) sectionEl.classList.remove("hidden");
-    }
+    const modal = document.getElementById("modal");
 
     function debounce(fn, wait = 300) {
         let t;
@@ -34,28 +21,6 @@ window.onload = () => {
             if (v.length >= 3) peticionAjax(true);
         }, 400);
         buscadorInputPrincipal.addEventListener("input", autoHandler);
-    }
-
-    if (buscadorLandingEl) {
-        const autoHandlerLanding = debounce(() => {
-            const v = buscadorLandingEl.value.trim();
-            if (v.length >= 3 && v !== lastQuery) {
-                // sincronizamos valor al input principal si existe
-                const mainInput = document.getElementById("buscador");
-                if (mainInput) mainInput.value = v;
-                lastQuery = v;
-                peticionAjax(true);
-            }
-        }, 400);
-        buscadorLandingEl.addEventListener("input", autoHandlerLanding);
-    }
-
-    if (iniciarDesdeLandingBtn) {
-        iniciarDesdeLandingBtn.addEventListener("click", () => {
-            const mainInput = document.getElementById("buscador");
-            if (mainInput && buscadorLandingEl) mainInput.value = buscadorLandingEl.value;
-            peticionAjax(true);
-        });
     }
 
     function peticionAjax(reset = false) {
@@ -157,18 +122,16 @@ window.onload = () => {
     }
     //clickar fuera para cerrar
     modal.addEventListener('click', (ev)=>{
-    if(ev.target === modal){ modal.style.display='none'; modal.setAttribute('aria-hidden','true'); }
-});
+        if(ev.target === modal){ 
+            modal.style.display='none'; 
+            modal.setAttribute('aria-hidden','true'); 
+        }
+    });
     document.getElementById("closeModal").addEventListener("click", () => {
         document.getElementById("modal").style.display = "none";
         document.getElementById("closeModal").style.cursor = "pointer";
-        document.getElementById("modal").addEventListener("click", (event) => {
-            if (event.target === document.getElementById("modal")) {
-                document.getElementById("modal").style.display = "none";
-            }
-        });
-        
     });
+        
     /*
     function detalle(series) {
                 fetch(`https://www.omdbapi.com/?apikey=${apiKey}&type=${series}`)
@@ -205,13 +168,16 @@ window.onload = () => {
             });
             
         });*/
-        function fEnter(evento){
+        
+    document.getElementById("buscarBtn").addEventListener("click", () => peticionAjax(true));
+    
+    function fEnter(evento){
             if(evento.key === "Enter"){
                 peticionAjax(true);
             }
-        }
-    document.getElementById("buscarBtn").addEventListener("click", () => peticionAjax(true));
-    document.getElementById("buscarBtn").addEventListener("keypress", fEnter);
+    }
+    document.getElementById("buscador").addEventListener("keydown", fEnter);
+    
     document.getElementById("resetBtn").addEventListener("click", () => {
         document.getElementById("lista").innerHTML = "";
         document.getElementById("numeroResultados").innerHTML = "";
@@ -225,5 +191,4 @@ window.onload = () => {
             peticionAjax(false);
         }
     });
-    if (landingSection) showSection(landingSection);
 };
