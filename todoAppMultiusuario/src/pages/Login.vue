@@ -1,12 +1,14 @@
 <template>
-  <div>
-    <h2>Login</h2>
+  <div class="container">
+    <div class="form">
+      <h2>Login</h2>
 
-    <input v-model="email" type="email" placeholder="Email" />
-    <input v-model="password" type="password" placeholder="Contraseña" />
+      <input v-model="email" type="email" placeholder="Email" />
+      <input v-model="password" type="password" placeholder="Contraseña" />
 
-    <button @click="login">Entrar</button>
-    <button @click="loginGoogle">Entrar con Google</button>
+      <button @click="login">Entrar</button>
+      <button @click="loginGoogle">Entrar con Google</button>
+    </div>
   </div>
 </template>
 

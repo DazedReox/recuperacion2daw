@@ -1,11 +1,13 @@
 <template>
-  <div>
-    <h2>Registro</h2>
+  <div class="container">
+    <div class="form">
+      <h2>Registro</h2>
 
-    <input v-model="email" type="email" placeholder="Email" />
-    <input v-model="password" type="password" placeholder="Contraseña" />
+      <input v-model="email" type="email" placeholder="Email" />
+      <input v-model="password" type="password" placeholder="Contraseña" />
 
-    <button @click="registro">Registrarse</button>
+      <button @click="registro">Registrarse</button>
+    </div>
   </div>
 </template>
 

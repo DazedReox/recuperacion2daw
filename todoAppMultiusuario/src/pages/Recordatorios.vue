@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <h2>Mis recordatorios</h2>
 
     <input v-model="texto" placeholder="Nueva nota" />
@@ -19,11 +19,11 @@
 </template>
 
 <script>
-import { collection, addDoc, getDocs, deleteDoc, doc } from 'firebase/firestore'
-import { auth, db } from '../firebase'
-import { signOut } from 'firebase/auth'
-import { store } from '../store'
-import Nota from '../components/Nota.vue'
+import { collection, addDoc, getDocs, deleteDoc, doc } from 'firebase/firestore';
+import { auth, db } from '../firebase';
+import { signOut } from 'firebase/auth';
+import { store } from '../store';
+import Nota from '../components/Nota.vue';
 
 export default {
   components: {
@@ -42,9 +42,14 @@ export default {
     async cargarNotas() {
       this.notas = []
       const querySnapshot = await getDocs(collection(db, 'notas'))
+
       querySnapshot.forEach((docu) => {
-        if (docu.data().uid === auth.currentUser.uid) {
-          this.notas.push({ id: docu.id, ...docu.data() })
+        const nota = { id: docu.id, ...docu.data() }
+
+        if (store.isAdmin) {
+          this.notas.push(nota)
+        } else if (nota.uid === auth.currentUser.uid) {
+          this.notas.push(nota)
         }
       })
     },

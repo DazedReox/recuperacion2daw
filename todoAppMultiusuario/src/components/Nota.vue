@@ -1,8 +1,9 @@
 <template>
-  <li>
-    {{ nota.texto }}
-    <button @click="$emit('borrar', nota.id)">X</button>
-  </li>
+  <div class="nota">
+    <span>{{ nota.texto }}</span>
+    <button @click="$emit('borrar', nota.id)">Eliminar</button>
+</div>
+
 </template>
 
 <script>

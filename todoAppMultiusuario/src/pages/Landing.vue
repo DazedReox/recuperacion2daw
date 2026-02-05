@@ -1,19 +1,16 @@
 <template>
-  <div>
-    <h1>App de Recordatorios</h1>
-    <p>Organiza tus notas de forma sencilla.</p>
-
-    <div>
-      <router-link to="/login">
-        <button>Iniciar sesión</button>
-      </router-link>
-
-      <router-link to="/registro">
-        <button>Registrarse</button>
-      </router-link>
-    </div>
+  <div class="landing">
+    <h1>Recordatorios</h1>
+    <p>Organiza tus notas de forma sencilla y segura</p>
+    <router-link to="/login">
+      <button>Entrar</button>
+    </router-link>
+    <router-link to="/registro">
+      <button class="secondary">Registrarse</button>
+    </router-link>
   </div>
 </template>
+
 
 <script>
 export default {
