@@ -19,7 +19,8 @@ function PokemonDetail() {
   if (!pokemon) return <p>Cargando detalle...</p>;
 
   return (
-    <div>
+    <div className="container">
+      <div className="content-box">
       <h2>{pokemon.name.toUpperCase()}</h2>
       <img src={pokemon.sprites.front_default} alt={pokemon.name} />
 
@@ -32,6 +33,7 @@ function PokemonDetail() {
           <li key={type.type.name}>{type.type.name}</li>
         ))}
       </ul>
+      </div>
     </div>
   );
 }

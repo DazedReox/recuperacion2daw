@@ -22,7 +22,8 @@ function Register() {
   }
 
   return (
-    <div>
+    <div className="container">
+      <div className="content-box">
       <h2>Registro</h2>
 
       <form onSubmit={handleRegister}>
@@ -46,6 +47,7 @@ function Register() {
       </form>
 
       {error && <p>{error}</p>}
+    </div>
     </div>
   );
 }

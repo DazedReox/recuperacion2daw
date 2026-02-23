@@ -22,7 +22,8 @@ function Login() {
   }
 
   return (
-    <div>
+    <div className="container">
+      <div className="content-box">
       <h2>Iniciar Sesión</h2>
 
       <form onSubmit={handleLogin}>
@@ -46,6 +47,7 @@ function Login() {
       </form>
 
       {error && <p>{error}</p>}
+      </div>
     </div>
   );
 }

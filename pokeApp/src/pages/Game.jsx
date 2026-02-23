@@ -15,11 +15,33 @@ function Game() {
   const [message, setMessage] = useState("");
   const { user } = useAuth();
 
+
   const TOTAL_ROUNDS = 5;
 
   useEffect(() => {
     loadRound();
   }, []);
+  
+useEffect(() => {
+  console.log("Round actual:", round);
+
+  if (round > TOTAL_ROUNDS) {
+    console.log("Fin del juego, guardando...");
+    saveScore();
+  }
+}, [round]);
+
+async function saveScore() {
+  try {
+    await addDoc(collection(db, "ranking"), {
+      username: "JugadorPrueba",
+      score: score,
+      createdAt: serverTimestamp()
+    });
+  } catch (error) {
+    console.error("Error guardando puntuación", error);
+  }
+}
 
   async function loadRound() {
     setMessage("");
@@ -61,38 +83,24 @@ function Game() {
     }
   }
 
+
   if (!pokemon) return <p>Cargando juego...</p>;
 
-  if (round > TOTAL_ROUNDS) {
-
-  async function saveScore() {
-    if (!user) return;
-
-    try {
-      await addDoc(collection(db, "rankings"), {
-        username: user.email,
-        score: score,
-        createdAt: serverTimestamp()
-      });
-    } catch (error) {
-      console.error("Error guardando puntuación", error);
-    }
-  }
-
-  saveScore();
-
+if (round > TOTAL_ROUNDS) {
   return (
-    <div>
-      <h2>Juego terminado</h2>
-      <p>Puntuación final: {score}</p>
+    <div className="container-center">
+      <div className="content-box">
+        <h2>Juego terminado</h2>
+        <p>Puntuación final: {score}</p>
 
-      <button onClick={() => window.location.reload()}>
-        Volver a jugar
-      </button>
+        <button onClick={() => window.location.reload()}>
+          Volver a jugar
+        </button>
 
-      <hr />
+        <hr />
 
-      <Ranking />
+        <Ranking />
+      </div>
     </div>
   );
 }
@@ -100,7 +108,8 @@ function Game() {
 
 
   return (
-    <div>
+    <div className="container">
+      <div className="content-box">
       <h2>Ronda {round} de {TOTAL_ROUNDS}</h2>
 
       <p><strong>Altura:</strong> {pokemon.height}</p>
@@ -116,6 +125,7 @@ function Game() {
         <p>{message}</p>
         <p>Puntuación: {score}</p>
         <button onClick={() => window.location.reload()}> Volver a jugar </button>
+      </div>
     </div>
     
   );

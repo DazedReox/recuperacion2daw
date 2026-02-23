@@ -6,8 +6,8 @@ function PokemonCard({ name, id }) {
 
   return (
     <div className="card">
-      <img src={imageUrl} alt={name} />
-      <h3>{name.toUpperCase()}</h3>
+      {/*<img src={imageUrl} alt={name} />
+      <h3>{name.toUpperCase()}</h3>*/}
       <Link to={`/detalle/${id}`}>Ver Detalle</Link>
     </div>
   );

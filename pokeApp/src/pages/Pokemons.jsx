@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import PokemonCard from "../components/PokemonCard";
 
 function Pokemons() {
   const [pokemons, setPokemons] = useState([]);
@@ -15,7 +16,7 @@ function Pokemons() {
   }, [page]);
 
   return (
-    <div className="container">
+    <div className="container-pokemons">
       <h1>Lista de Pokémons</h1>
 
       <div className="pokemon-grid">
@@ -28,6 +29,9 @@ function Pokemons() {
               <img
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
                 alt={pokemon.name}
+              />
+              <PokemonCard
+                name={pokemon.name.toUpperCase()}
               />
             </div>
           );

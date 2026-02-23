@@ -2,7 +2,8 @@ import React from "react";
 
 function Home() {
   return (
-    <div className="home">
+    <div className="container">
+      <div className="content-box">
       <h1>Pokemon App</h1>
 
       <p>
@@ -20,6 +21,7 @@ function Home() {
         <li>Jugar a un juego de adivinanza.</li>
         <li>Iniciar sesión para guardar puntuaciones.</li>
       </ul>
+      </div>
     </div>
   );
 }

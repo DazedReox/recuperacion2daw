@@ -1,43 +1,44 @@
-import React from "react";
-import { useEffect, useState } from "react";
-import { collection, getDocs, query, orderBy } from "firebase/firestore";
+import React, { useEffect, useState } from "react";
 import { db } from "../firebase";
+import { collection, getDocs, query, orderBy } from "firebase/firestore";
 
 function Ranking() {
   const [scores, setScores] = useState([]);
 
   useEffect(() => {
-    async function loadRanking() {
-        const q = query(
-            collection(db, "rankings"),
-            orderBy("score", "desc"),
-            orderBy("createdAt", "asc")
-        );
+    const getRanking = async () => {
+      const q = query(
+        collection(db, "ranking"),
+        orderBy("score", "desc")
+      );
 
+      const querySnapshot = await getDocs(q);
+      const data = querySnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }));
 
-        const querySnapshot = await getDocs(q);
-        const data = querySnapshot.docs.map(doc => ({
-            id: doc.id,
-            ...doc.data()
-        }));
+      setScores(data);
+    };
 
-        setScores(data);
-        }
-
-    loadRanking();
+    getRanking();
   }, []);
 
   return (
-    <div>
-        <h2>Ranking</h2>
+    <div className="container-center">
+      <div className="content-box">
+        <h1>Ranking</h1>
 
-        <ul>
-        {scores.map((item, index) => (
-            <li key={item.id}>
-                {index + 1}. {item.username} - {item.score} puntos
-            </li>
-        ))}
-        </ul>
+        {scores.length === 0 ? (
+          <p>No hay puntuaciones todavía.</p>
+        ) : (
+          scores.map((item, index) => (
+            <p key={item.id}>
+              {index + 1}. {item.name} - {item.score}
+            </p>
+          ))
+        )}
+      </div>
     </div>
   );
 }
