@@ -1,35 +1,52 @@
-import React from "react";
-import { useEffect, useState } from "react";
-import { getPokemons } from "../pokemonService";
-import PokemonCard from "../components/PokemonCard";
+import React, { useEffect, useState } from "react";
 
 function Pokemons() {
   const [pokemons, setPokemons] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(0);
+
+  const limit = 20;
 
   useEffect(() => {
-    async function loadData() {
-      const data = await getPokemons(30);
-      setPokemons(data);
-      setLoading(false);
-    }
-
-    loadData();
-  }, []);
-
-  if (loading) return <p>Cargando Pokemons...</p>;
+    fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${page * limit}`)
+      .then(res => res.json())
+      .then(data => {
+        setPokemons(data.results);
+      });
+  }, [page]);
 
   return (
-    <div>
-      <h2>Lista de Pokemons</h2>
+    <div className="container">
+      <h1>Lista de Pokémons</h1>
+
       <div className="pokemon-grid">
-        {pokemons.map((pokemon, index) => (
-          <PokemonCard
-            key={pokemon.name}
-            name={pokemon.name}
-            id={index + 1}
-          />
-        ))}
+        {pokemons.map((pokemon, index) => {
+          const id = page * limit + index + 1;
+
+          return (
+            <div key={pokemon.name} className="pokemon-card">
+              <h3>{pokemon.name.toUpperCase()}</h3>
+              <img
+                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
+                alt={pokemon.name}
+              />
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="pagination">
+        <button
+          disabled={page === 0}
+          onClick={() => setPage(page - 1)}
+        >
+          Anterior
+        </button>
+
+        <span>Página {page + 1}</span>
+
+        <button onClick={() => setPage(page + 1)}>
+          Siguiente
+        </button>
       </div>
     </div>
   );
