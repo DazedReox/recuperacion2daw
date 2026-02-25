@@ -32,6 +32,7 @@ function Pokemons() {
               />
               <PokemonCard
                 name={pokemon.name.toUpperCase()}
+                id={id}
               />
             </div>
           );
