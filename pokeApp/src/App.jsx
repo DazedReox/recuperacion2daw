@@ -21,14 +21,11 @@ function App() {
         <Route path="/pokemons" element={<Pokemons />} />
         <Route path="/detalle/:id" element={<PokemonDetail />} />
         
-        <Route
-          path="/jugar"
-          element={
+        <Route path="/jugar" element={
             <ProtectedRoute>
               <Game />
             </ProtectedRoute>
-          }
-        />
+          }/>
 
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
