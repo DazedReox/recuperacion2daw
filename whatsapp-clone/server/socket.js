@@ -31,6 +31,22 @@ module.exports = (io) => {
       io.to("general").emit("message", msg);
     });
 
+    socket.on("private_message", ({ to, message }) => {
+
+    const user = getUser(socket.id);
+
+    const msg = {
+      user: user.name,
+      avatar: user.avatar,
+      text: message,
+      private: true
+    };
+
+    io.to(to).emit("private_message", msg);
+    socket.emit("private_message", msg);
+
+    });
+
     socket.on("typing", (name) => {
       socket.broadcast.emit("typing", name);
     });

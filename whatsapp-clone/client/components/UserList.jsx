@@ -1,13 +1,20 @@
-function UserList({ users }) {
+function UserList({ users, onSelectUser }) {
 
   return (
+
     <div className="sidebar">
 
       <h3>Usuarios conectados</h3>
 
       <ul className="user-list">
+
         {users.map((user) => (
-          <li key={user.id} className="user-item">
+
+          <li
+            key={user.id}
+            className="user-item"
+            onClick={() => onSelectUser(user)}
+          >
 
             <img
               src={user.avatar}
@@ -15,16 +22,19 @@ function UserList({ users }) {
               className="avatar"
             />
 
-            <div className="user-info">
+            <div>
               <strong>{user.name}</strong>
-              <span className="status">{user.status}</span>
+              <div className="status">{user.status}</div>
             </div>
 
           </li>
+
         ))}
+
       </ul>
 
     </div>
+
   );
 
 }

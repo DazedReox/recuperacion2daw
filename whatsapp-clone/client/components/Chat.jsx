@@ -10,6 +10,7 @@ function Chat({ user }) {
   const [users, setUsers] = useState([]);
   const [messages, setMessages] = useState([]);
   const [typing, setTyping] = useState("");
+  const [selectedUser, setSelectedUser] = useState(null);
 
   useEffect(() => {
 
@@ -18,6 +19,18 @@ function Chat({ user }) {
     socket.on("users", (users) => {
       setUsers(users);
     });
+   
+    socket.on("private_message", (msg) => {
+
+      setMessages(prev => [...prev, msg]);
+
+    });
+    
+    {selectedUser && (
+      <div className="private-header">
+      Chat privado con {selectedUser.name}
+      </div>
+    )}
 
     socket.on("message", (msg) => {
       setMessages((prev) => [...prev, msg]);
@@ -37,24 +50,54 @@ function Chat({ user }) {
 
   function sendMessage(text) {
 
+  if (selectedUser) {
+
+    socket.emit("private_message", {
+      to: selectedUser.id,
+      message: text
+    });
+
+  } else {
+
     const msg = {
       user: user.name,
       avatar: user.avatar,
-      text: text
+      text
     };
 
     socket.emit("message", msg);
+
   }
 
-  function handleTyping() {
-    socket.emit("typing", user.name);
-  }
+}
+async function sendFile(file) {
+
+  const formData = new FormData();
+  formData.append("file", file);
+
+  const res = await fetch("http://localhost:3000/upload", {
+    method: "POST",
+    body: formData
+  });
+
+  const data = await res.json();
+
+  socket.emit("message", {
+    user: user.name,
+    avatar: user.avatar,
+    file: data.file,
+    name: data.original
+  });
+
+}
 
   return (
 
     <div className="chat-container">
-
-      <UserList users={users} />
+      <UserList
+        users={users}
+        onSelectUser={setSelectedUser}
+      />
 
       <div className="chat-main">
 
@@ -65,6 +108,7 @@ function Chat({ user }) {
         <MessageInput
           onSend={sendMessage}
           onTyping={handleTyping}
+          onFile={sendFile}
         />
 
       </div>

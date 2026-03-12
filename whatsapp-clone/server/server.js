@@ -8,7 +8,28 @@ const socketHandler = require("./socket");
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
+const multer = require("multer");
 
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "uploads/");
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + "-" + file.originalname);
+  }
+});
+
+const upload = multer({ storage });
+app.post("/upload", upload.single("file"), (req, res) => {
+
+  res.json({
+    file: req.file.filename,
+    original: req.file.originalname
+  });
+
+});
+
+app.use("/uploads", express.static("uploads"));
 app.use(express.static(path.join(__dirname, "../public")));
 
 socketHandler(io);

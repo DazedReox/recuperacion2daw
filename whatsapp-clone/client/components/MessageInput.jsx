@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function MessageInput({ onSend, onTyping }) {
+function MessageInput({ onSend, onTyping, onFile }) {
 
   const [text, setText] = useState("");
 
@@ -9,14 +9,15 @@ function MessageInput({ onSend, onTyping }) {
     if (!text.trim()) return;
 
     onSend(text);
-
     setText("");
   }
 
-  function handleKey(e) {
+  function handleFile(e) {
 
-    if (e.key === "Enter") {
-      send();
+    const file = e.target.files[0];
+
+    if (file) {
+      onFile(file);
     }
 
   }
@@ -33,7 +34,12 @@ function MessageInput({ onSend, onTyping }) {
           setText(e.target.value);
           onTyping();
         }}
-        onKeyDown={handleKey}
+        onKeyDown={(e) => e.key === "Enter" && send()}
+      />
+
+      <input
+        type="file"
+        onChange={handleFile}
       />
 
       <button onClick={send}>
