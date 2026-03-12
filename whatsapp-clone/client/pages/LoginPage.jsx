@@ -1,0 +1,13 @@
+import Login from "../components/Login";
+
+function LoginPage({ onLogin }) {
+
+  return (
+    <div className="login-page">
+      <Login onLogin={onLogin} />
+    </div>
+  );
+
+}
+
+export default LoginPage;
