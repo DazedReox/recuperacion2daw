@@ -72,10 +72,10 @@ window.onload = () => {
                     let img = document.createElement("img");
                     img.src = pelicula.Poster !== "N/A" ? pelicula.Poster : "placeholder.png";
                     /*
-                    BUG: NO FUNCIONAN LAS PELICULAS NO CARGADAS, SE CAMBIA EL TITULO MUY ALEATORIAMENTE
+                    BUG: NO FUNCIONAN LAS PELICULAS NO CARGADAS, SE CAMBIA EL TITULO MUY ALEATORIAMENTE*/
                     img.onerror = () => { 
-                        img.src = 'placeholder.jpg'; 
-                    }*/
+                        img.src = 'placeholder.png'; 
+                    }
                     img.alt = pelicula.Title;
                     img.style.cursor = "pointer";
                 
