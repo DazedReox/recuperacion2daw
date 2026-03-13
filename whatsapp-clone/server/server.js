@@ -7,7 +7,11 @@ const socketHandler = require("./socket");
 
 const app = express();
 const server = http.createServer(app);
-const io = new Server(server);
+const io = new Server(server, {
+  cors: {
+    origin: "*"
+  }
+});
 const multer = require("multer");
 
 const storage = multer.diskStorage({
@@ -30,7 +34,6 @@ app.post("/upload", upload.single("file"), (req, res) => {
 });
 
 app.use("/uploads", express.static("uploads"));
-app.use(express.static(path.join(__dirname, "../public")));
 
 socketHandler(io);
 

@@ -12,11 +12,10 @@ function App() {
 
   return (
     <>
-      {!user ? (
-        <LoginPage onLogin={handleLogin} />
-      ) : (
-        <ChatPage user={user} />
-      )}
+      {!user
+        ? <LoginPage onLogin={handleLogin} />
+        : <ChatPage user={user} />
+      }
     </>
   );
 
