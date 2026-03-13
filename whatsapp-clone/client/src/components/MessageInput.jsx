@@ -1,15 +1,21 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 function MessageInput({ onSend, onTyping, onFile }) {
 
   const [text, setText] = useState("");
 
-  function send() {
+  function handleSubmit(e) {
+    e.preventDefault();
 
     if (!text.trim()) return;
 
     onSend(text);
     setText("");
+  }
+
+  function handleChange(e) {
+    setText(e.target.value);
+    onTyping();
   }
 
   function handleFile(e) {
@@ -26,30 +32,29 @@ function MessageInput({ onSend, onTyping, onFile }) {
 
     <div className="message-input">
 
-      <input
-        type="text"
-        placeholder="Escribe un mensaje..."
-        value={text}
-        onChange={(e) => {
-          setText(e.target.value);
-          onTyping();
-        }}
-        onKeyDown={(e) => e.key === "Enter" && send()}
-      />
+      <form onSubmit={handleSubmit}>
 
-      <input
-        type="file"
-        onChange={handleFile}
-      />
+        <input
+          type="text"
+          placeholder="Escribe un mensaje..."
+          value={text}
+          onChange={handleChange}
+        />
 
-      <button onClick={send}>
-        Enviar
-      </button>
+        <input
+          type="file"
+          onChange={handleFile}
+        />
+
+        <button type="submit">
+          Enviar
+        </button>
+
+      </form>
 
     </div>
 
   );
-
 }
 
 export default MessageInput;

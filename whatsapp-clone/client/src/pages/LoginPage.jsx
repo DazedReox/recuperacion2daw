@@ -1,3 +1,4 @@
+import React from "react";
 import Login from "../components/Login";
 
 function LoginPage({ onLogin }) {
@@ -7,7 +8,6 @@ function LoginPage({ onLogin }) {
       <Login onLogin={onLogin} />
     </div>
   );
-
 }
 
 export default LoginPage;

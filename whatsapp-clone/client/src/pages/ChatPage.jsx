@@ -1,3 +1,4 @@
+import React from "react";
 import Chat from "../components/Chat";
 
 function ChatPage({ user }) {
@@ -7,7 +8,6 @@ function ChatPage({ user }) {
       <Chat user={user} />
     </div>
   );
-
 }
 
 export default ChatPage;

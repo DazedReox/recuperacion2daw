@@ -1,9 +1,10 @@
+import React from "react";
 import { useEffect, useState } from "react";
+import socket from "../services/socket";
 
 import UserList from "./UserList";
 import MessageList from "./MessageList";
 import MessageInput from "./MessageInput";
-
 
 function Chat({ user }) {
 
@@ -14,63 +15,67 @@ function Chat({ user }) {
 
   useEffect(() => {
 
-    socket.emit("login", user);
+  socket.emit("login", user);
 
-    socket.on("users", (users) => {
-      setUsers(users);
-    });
-   
-    socket.on("private_message", (msg) => {
+  const handleUsers = (users) => {
+    setUsers(users);
+  };
 
-      setMessages(prev => [...prev, msg]);
+  const handleMessage = (msg) => {
+    setMessages((prev) => [...prev, msg]);
+  };
 
-    });
-    
-    {selectedUser && (
-      <div className="private-header">
-      Chat privado con {selectedUser.name}
-      </div>
-    )}
+  const handlePrivate = (msg) => {
+    setMessages((prev) => [...prev, msg]);
+  };
 
-    socket.on("message", (msg) => {
-      setMessages((prev) => [...prev, msg]);
-    });
+  const handleSystem = (msg) => {
+    setMessages((prev) => [...prev, { system: true, text: msg }]);
+  };
 
-    socket.on("system", (msg) => {
-      setMessages((prev) => [...prev, { system: true, text: msg }]);
-    });
+  const handleTyping = (name) => {
+    setTyping(`${name} está escribiendo...`);
+    setTimeout(() => setTyping(""), 1000);
+  };
 
-    socket.on("typing", (name) => {
-      setTyping(`${name} está escribiendo...`);
+  socket.on("users", handleUsers);
+  socket.on("message", handleMessage);
+  socket.on("private_message", handlePrivate);
+  socket.on("system", handleSystem);
+  socket.on("typing", handleTyping);
 
-      setTimeout(() => setTyping(""), 1000);
-    });
+  return () => {
+    socket.off("users", handleUsers);
+    socket.off("message", handleMessage);
+    socket.off("private_message", handlePrivate);
+    socket.off("system", handleSystem);
+    socket.off("typing", handleTyping);
+  };
 
-  }, []);
+}, []);
 
-  function sendMessage(text) {
-
-  if (selectedUser) {
-
-    socket.emit("private_message", {
-      to: selectedUser.id,
-      message: text
-    });
-
-  } else {
-
-    const msg = {
-      user: user.name,
-      avatar: user.avatar,
-      text
-    };
-
-    socket.emit("message", msg);
-
+  function handleTyping() {
+    socket.emit("typing", user.name);
   }
 
-}
-async function sendFile(file) {
+  function sendMessage(text) {
+    if (selectedUser) {
+      socket.emit("private_message", {
+        to: selectedUser.id,
+        message: text
+      });
+
+    } else {
+      const msg = {
+        user: user.name,
+        avatar: user.avatar,
+        text
+      };
+      socket.emit("message", msg);
+    }
+  }
+
+  async function sendFile(file) {
 
   const formData = new FormData();
   formData.append("file", file);
@@ -79,6 +84,11 @@ async function sendFile(file) {
     method: "POST",
     body: formData
   });
+
+  if (!res.ok) {
+    console.error("Error subiendo archivo");
+    return;
+  }
 
   const data = await res.json();
 
@@ -94,14 +104,20 @@ async function sendFile(file) {
   return (
 
     <div className="chat-container">
+
       <UserList
         users={users}
         onSelectUser={setSelectedUser}
       />
 
       <div className="chat-main">
+        {selectedUser && (
+          <div className="private-header">
+            Chat privado con {selectedUser.name}
+          </div>
+        )}
 
-        <MessageList messages={messages} />
+        <MessageList messages={messages} currentUser={user.name} />
 
         <div className="typing">{typing}</div>
 
@@ -110,9 +126,7 @@ async function sendFile(file) {
           onTyping={handleTyping}
           onFile={sendFile}
         />
-
       </div>
-
     </div>
   );
 }

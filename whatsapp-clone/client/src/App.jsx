@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react";
 import LoginPage from "./pages/LoginPage";
 import ChatPage from "./pages/ChatPage";

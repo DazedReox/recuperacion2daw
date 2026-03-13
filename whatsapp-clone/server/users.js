@@ -1,11 +1,17 @@
-let users = [];
+const users = [];
 
 function addUser(user) {
-  users.push(user);
+  const exists = users.find(u => u.id === user.id);
+  if (!exists) {
+    users.push(user);
+  }
 }
 
 function removeUser(id) {
-  users = users.filter(u => u.id !== id);
+  const index = users.findIndex(u => u.id === id);
+  if (index !== -1) {
+    users.splice(index, 1);
+  }
 }
 
 function getUsers() {
