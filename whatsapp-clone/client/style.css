@@ -4,7 +4,6 @@
   background:#43d0589c;
 }
 
-/* SIDEBAR */
 
 .sidebar{
   width:260px;
@@ -49,7 +48,6 @@
   opacity:0.7;
 }
 
-/* CHAT AREA */
 
 .chat-main{
   flex:1;
@@ -63,7 +61,6 @@
   padding:10px 15px;
 }
 
-/* MENSAJES */
 
 .messages{
   flex:1;
@@ -93,7 +90,6 @@
   height:30px;
 }
 
-/* MENSAJES PROPIOS */
 
 .message.own{
   align-self:flex-end;
@@ -104,7 +100,6 @@
   background:#d9fdd3;
 }
 
-/* IMAGENES DEL CHAT */
 
 .chat-image{
   max-width:150px;
@@ -112,7 +107,6 @@
   margin-top:5px;
 }
 
-/* INPUT */
 
 .message-input{
   display:flex;
@@ -134,7 +128,6 @@
   border-color:#00a884;
 }
 
-/* BOTONES */
 
 .message-input button{
   background:#00a884;
@@ -150,7 +143,6 @@
   background:#019874;
 }
 
-/* FILE INPUT */
 
 .message-input input[type="file"]{
   background:white;
@@ -159,7 +151,6 @@
   cursor:pointer;
 }
 
-/* TYPING */
 
 .typing{
   font-size:12px;
@@ -174,4 +165,33 @@
 
 .message.own p{
   background:#d9fdd3;
+}
+
+.back-button{
+  margin-left:15px;
+  padding:5px 10px;
+  border:none;
+  border-radius:6px;
+  background:#00a884;
+  color:white;
+  cursor:pointer;
+  font-size:12px;
+}
+
+.back-button:hover{
+  background:#019874;
+}
+
+.logout-button{
+  background:#ff4d4f;
+  border:none;
+  color:white;
+  padding:6px 12px;
+  border-radius:6px;
+  cursor:pointer;
+  font-size:13px;;
+}
+
+.logout-button:hover{
+  background:#d9363e;
 }

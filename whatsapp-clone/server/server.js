@@ -9,6 +9,12 @@ const cors = require("cors");
 const app = express();
 app.use(cors());
 
+const fs = require("fs");
+
+if (!fs.existsSync("uploads")) {
+  fs.mkdirSync("uploads");
+}
+
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
@@ -40,6 +46,8 @@ app.use("/uploads", express.static("uploads"));
 
 socketHandler(io);
 
-server.listen(3000, () => {
-    console.log("Servidor en http://localhost:3000");
+const PORT = process.env.PORT || 3000;
+
+server.listen(PORT, () => {
+  console.log("Servidor iniciado");
 });

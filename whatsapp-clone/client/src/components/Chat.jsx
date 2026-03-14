@@ -6,12 +6,27 @@ import UserList from "./UserList";
 import MessageList from "./MessageList";
 import MessageInput from "./MessageInput";
 
+import { signOut } from "firebase/auth";
+import { auth } from "../services/firebase";
+
+
 function Chat({ user }) {
 
   const [users, setUsers] = useState([]);
   const [messages, setMessages] = useState([]);
   const [typing, setTyping] = useState("");
   const [selectedUser, setSelectedUser] = useState(null);
+
+  async function logout() {
+
+    try {
+      await signOut(auth);
+      socket.disconnect();
+      setUser(null);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   useEffect(() => {
 
@@ -80,7 +95,7 @@ function Chat({ user }) {
   const formData = new FormData();
   formData.append("file", file);
 
-  const res = await fetch("http://localhost:3000/upload", {
+  const res = await fetch("https://whatsapp-clone-xxxx.onrender.com/upload", {
     method: "POST",
     body: formData
   });
@@ -111,13 +126,24 @@ function Chat({ user }) {
       />
 
       <div className="chat-main">
-        {selectedUser && (
+        <button onClick={logout} className="logout-button">
+          Cerrar sesión
+        </button>
+        {selectedUser ? (
           <div className="private-header">
             Chat privado con {selectedUser.name}
+            <button className="back-button" onClick={() => setSelectedUser(null)}>
+              Volver al chat general
+            </button>
+          </div>
+        ) : (
+          <div className="private-header">
+            Chat general
           </div>
         )}
 
         <MessageList messages={messages} currentUser={user.name} />
+        
 
         <div className="typing">{typing}</div>
 
