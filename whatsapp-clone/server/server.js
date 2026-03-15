@@ -25,7 +25,7 @@ const multer = require("multer");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, "uploads"));
+    cb(null, path.join(process.cwd(), "uploads"));
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + "-" + file.originalname);
@@ -35,6 +35,15 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 app.post("/upload", upload.single("file"), (req, res) => {
 
+  console.log("Upload recibido");
+
+  if (!req.file) {
+    console.log("No se recibió archivo");
+    return res.status(400).json({ error: "No file uploaded" });
+  }
+
+  console.log("Archivo guardado:", req.file);
+
   res.json({
     file: req.file.filename,
     original: req.file.originalname
@@ -42,7 +51,7 @@ app.post("/upload", upload.single("file"), (req, res) => {
 
 });
 
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 
 socketHandler(io);
 
