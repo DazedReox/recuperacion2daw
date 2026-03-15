@@ -79,7 +79,6 @@ function Chat({ user }) {
         to: selectedUser.id,
         message: text
       });
-
     } else {
       const msg = {
         user: user.name,
@@ -91,29 +90,26 @@ function Chat({ user }) {
   }
 
   async function sendFile(file) {
+    const formData = new FormData();
+    formData.append("file", file);
+    
+    const res = await fetch("https://clonwasapweb.onrender.com/upload", {
+      method: "POST",
+      body: formData
+    });
 
-  const formData = new FormData();
-  formData.append("file", file);
+    if (!res.ok) {
+      console.error("Error subiendo archivo");
+      return;
+    }
 
-  const res = await fetch("https://whatsapp-clone-xxxx.onrender.com/upload", {
-    method: "POST",
-    body: formData
-  });
-
-  if (!res.ok) {
-    console.error("Error subiendo archivo");
-    return;
-  }
-
-  const data = await res.json();
-
-  socket.emit("message", {
-    user: user.name,
-    avatar: user.avatar,
-    file: data.file,
-    name: data.original
-  });
-
+    const data = await res.json();
+    socket.emit("message", {
+      user: user.name,
+      avatar: user.avatar,
+      file: data.file,
+      name: data.original
+    });
 }
 
   return (

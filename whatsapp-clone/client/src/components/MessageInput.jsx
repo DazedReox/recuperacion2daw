@@ -6,9 +6,8 @@ function MessageInput({ onSend, onTyping, onFile }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-
+    
     if (!text.trim()) return;
-
     onSend(text);
     setText("");
   }
@@ -19,13 +18,10 @@ function MessageInput({ onSend, onTyping, onFile }) {
   }
 
   function handleFile(e) {
-
     const file = e.target.files[0];
-
     if (file) {
       onFile(file);
     }
-
   }
 
   return (

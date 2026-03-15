@@ -17,37 +17,27 @@ function Login({ onLogin }) {
     });
   }
 
-    async function loginGoogle() {
-
+  async function loginGoogle() {
     const provider = new GoogleAuthProvider();
-
     const result = await signInWithPopup(auth, provider);
-
     const user = result.user;
-
-    onLogin({
+     onLogin({
       name: user.displayName,
       avatar: user.photoURL,
       status: "online"
     });
+   }
 
-    }
-
-    async function loginGithub() {
-
-      const provider = new GithubAuthProvider();
-
-      const result = await signInWithPopup(auth, provider);
-
-      const user = result.user;
-
-      onLogin({
-        name: user.displayName || user.email,
-        avatar: user.photoURL,
-        status: "online"
-      });
-
-    }
+  async function loginGithub() {
+    const provider = new GithubAuthProvider();
+    const result = await signInWithPopup(auth, provider);
+    const user = result.user;
+    onLogin({
+      name: user.displayName || user.email,
+      avatar: user.photoURL,
+      status: "online"
+    });
+  }
 
   return (
 

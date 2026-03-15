@@ -6,22 +6,22 @@ module.exports = (io) => {
   io.on("connection", (socket) => {
     console.log("Usuario conectado");
     socket.on("login", (user) => {
-  const existingUser = getUser(socket.id);
+      const existingUser = getUser(socket.id);
 
-  if (!existingUser) {
-    const newUser = {
-      id: socket.id,
-      name: user.name,
-      status: user.status,
-      avatar: user.avatar
-    };
-    addUser(newUser);
-    joinRoom("general", socket.id);
-    socket.join("general");
-  }
-  io.emit("users", getUsers());
-  io.emit("system", `${user.name} ha entrado al chat`);
-});
+      if (!existingUser) {
+        const newUser = {
+          id: socket.id,
+          name: user.name,
+          status: user.status,
+          avatar: user.avatar
+        };
+        addUser(newUser);
+        joinRoom("general", socket.id);
+        socket.join("general");
+      }
+      io.emit("users", getUsers());
+      io.emit("system", `${user.name} ha entrado al chat`);
+    });
 
     socket.on("message", (msg) => {
       io.to("general").emit("message", msg);
