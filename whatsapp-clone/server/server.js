@@ -9,6 +9,14 @@ const cors = require("cors");
 const app = express();
 app.use(cors());
 
+app.use((req, res, next) => {
+  res.setHeader(
+    "Content-Security-Policy",
+    "default-src 'self'; img-src 'self' https: data:; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; connect-src *;"
+  );
+  next();
+});
+
 const fs = require("fs");
 
 if (!fs.existsSync("uploads")) {
