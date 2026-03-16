@@ -2,12 +2,12 @@ const express = require("express");
 const http = require("http");
 const { Server } = require("socket.io");
 const path = require("path");
+const fs = require("fs");
+const multer = require("multer");
 
 const socketHandler = require("./socket");
 
-const cors = require("cors");
 const app = express();
-app.use(cors());
 
 app.use((req, res, next) => {
   res.setHeader(
@@ -17,19 +17,9 @@ app.use((req, res, next) => {
   next();
 });
 
-const fs = require("fs");
-
 if (!fs.existsSync("uploads")) {
   fs.mkdirSync("uploads");
 }
-
-const server = http.createServer(app);
-const io = new Server(server, {
-  cors: {
-    origin: "*"
-  }
-});
-const multer = require("multer");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -41,16 +31,14 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage });
-app.post("/upload", upload.single("file"), (req, res) => {
+
+app.post("/api/upload", upload.single("file"), (req, res) => {
 
   console.log("Upload recibido");
 
   if (!req.file) {
-    console.log("No se recibió archivo");
     return res.status(400).json({ error: "No file uploaded" });
   }
-
-  console.log("Archivo guardado:", req.file);
 
   res.json({
     file: req.file.filename,
@@ -60,11 +48,19 @@ app.post("/upload", upload.single("file"), (req, res) => {
 });
 
 app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
+app.use(express.static(path.join(__dirname, "dist")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
+});
+
+const server = http.createServer(app);
+const io = new Server(server);
 
 socketHandler(io);
 
 const PORT = process.env.PORT || 3000;
 
 server.listen(PORT, () => {
-  console.log("Servidor iniciado");
+  console.log("Servidor iniciado en puerto " + PORT);
 });
