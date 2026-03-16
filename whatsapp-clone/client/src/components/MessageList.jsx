@@ -25,9 +25,9 @@ function MessageList({ messages, currentUser }) {
               <br/>
               {msg.file && (
                 msg.file.match(/\.(jpg|jpeg|png|gif)$/i) ? (
-                  <img src={`https://clonwasapweb.onrender.com/uploads/${msg.file}`} className="chat-image" />
+                  <img src={`https://clonwasapweb.onrender.com/upload/${msg.file}`} className="chat-image" />
                 ) : (
-                  <a href={`https://clonwasapweb.onrender.com/uploads/${msg.file}`} download>
+                  <a href={`https://clonwasapweb.onrender.com/upload/${msg.file}`} download>
                     Descargar {msg.name}
                   </a>
                 ))}
