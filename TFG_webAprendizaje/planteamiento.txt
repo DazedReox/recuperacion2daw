@@ -1,0 +1,136 @@
+· Problema planteado:
+
+    Los estudiantes suelen tener:
+
+    -Apuntes dispersos
+    -Poca motivación para estudiar
+    -Dificultad para medir su progreso
+    -Falta de interacción con otros alumnos
+
+    Esto es una plataforma donde:
+
+    -Aprenden contenidos
+    -Realizan ejercicios
+    -Obtienen recompensas
+    -Compiten amistosamente con otros usuarios
+    -Visualizan su evolución
+
+
+· Roles de usuario:
+
+    Alumno:
+    -Registrarse
+    -Consultar contenido
+    -Realizar cuestionarios
+    -Jugar minijuegos
+    -Ver estadísticas
+    -Conseguir logros
+
+    Administrador
+
+    -Gestionar usuarios
+    -Crear cursos
+    -Crear cuestionarios
+    -Crear retos
+    -Revisar estadísticas globales
+
+· Autenticación:
+
+    -Registro
+    -Inicio de sesión
+    -Recuperación de contraseña
+    -Roles
+
+· Tecnologías:
+
+    -JWT
+    -BCrypt
+
+· Cursos y contenidos:
+
+    -Crear cursos
+    -Crear temas
+    -Añadir contenido enriquecido
+    -Adjuntar PDFs
+
+· Cuestionarios:
+
+    -Preguntas tipo test
+    -Corrección automática
+    -Historial de resultados
+
+· Estadísticas:
+
+    -Horas estudiadas
+    -Tests realizados
+    -Porcentaje de aciertos
+    -Evolución semanal
+    -Chart.js
+
+· Base de datos: 
+
+    -Tablas:
+        usuarios
+        roles
+        cursos
+        temas
+        contenidos
+        tests
+        preguntas
+        respuestas
+        resultados
+        logros
+        usuarios_logros
+        publicaciones
+        comentarios
+        estadisticas
+
+    -Relaciones:
+        1:N
+        N:M
+        claves foráneas
+        integridad referencial
+
+·Tecnologías
+    -Frontend.
+    -React.
+    -TailwindCSS.
+    -Backend.
+    -Node.js.
+    -Express.
+    -Base de datos.
+    -MySQL.
+    -Extras.
+    -JWT.
+    -BCrypt.
+    -Chart.js.
+
+
+Modo oscuro/claro
+Diseño responsive
+
+Frontend (React + Tailwind) -> API REST --> Backend (Node.js + Express) --> Base de Datos (MySQL)
+
+
+Inicio
+Login
+Registro
+Dashboard
+
+Cursos
+Listado
+Detalle Curso
+
+Cuestionarios
+
+Minijuegos
+
+Logros
+
+Estadísticas
+
+Foro
+
+Perfil
+
+Administración
