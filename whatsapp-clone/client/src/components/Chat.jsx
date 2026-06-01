@@ -93,7 +93,7 @@ function Chat({ user }) {
     const formData = new FormData();
     formData.append("file", file);
     
-    const res = await fetch("https://clonwasapweb.onrender.com/upload", {
+    const res = await fetch("/upload", {
       method: "POST",
       body: formData
     });
