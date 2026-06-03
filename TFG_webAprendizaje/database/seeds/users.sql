@@ -1,0 +1,26 @@
+INSERT INTO usuarios
+(
+    role_id,
+    username,
+    email,
+    password,
+    xp,
+    level
+)
+VALUES
+(
+    1,
+    'admin',
+    'admin@learnquest.com',
+    '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7Y4V4xK0Ff0xD6D3Z6M9wzW',
+    0,
+    1
+),
+(
+    2,
+    'alumno',
+    'alumno@learnquest.com',
+    '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7Y4V4xK0Ff0xD6D3Z6M9wzW',
+    250,
+    1
+);

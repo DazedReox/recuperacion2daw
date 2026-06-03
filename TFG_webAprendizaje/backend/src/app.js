@@ -1,17 +1,20 @@
 import express from "express";
 import cors from "cors";
 import courseRoutes from "./routes/courseRoutes.js";
-
+import testRoutes from "./routes/testRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
+import forumRoutes from "./routes/forumRoutes.js";
+import rankingRoutes from "./routes/rankingRoutes.js";
+import adminRoutes from "./routes/adminRoutes.js";
 
 const app = express();
 
 app.use(cors());
-
 app.use(express.json());
-
 app.use("/api/auth", authRoutes);
-
 app.use("/api/courses", courseRoutes);
-
+app.use("/api/tests", testRoutes);
+app.use("/api/forum", forumRoutes);
+app.use("/api/ranking", rankingRoutes);
+app.use("/api/admin", adminRoutes);
 export default app;
