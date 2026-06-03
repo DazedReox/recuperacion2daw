@@ -1,52 +1,50 @@
 import pool from "../config/db.js";
 
-const authService = {
+const topicService = {
 
-    findUserByEmail: async (
-        email
+    getByCourse: async (
+        courseId
     ) => {
 
         const [rows] =
             await pool.query(
                 `
                 SELECT *
-                FROM usuarios
-                WHERE email = ?
+                FROM temas
+                WHERE course_id = ?
                 `,
-                [email]
+                [courseId]
             );
 
-        return rows[0];
+        return rows;
     },
 
-    createUser: async (
-        username,
-        email,
-        password
+    create: async (
+        courseId,
+        title,
+        description
     ) => {
 
         const [result] =
             await pool.query(
                 `
-                INSERT INTO usuarios
+                INSERT INTO temas
                 (
-                    role_id,
-                    username,
-                    email,
-                    password
+                    course_id,
+                    title,
+                    description
                 )
                 VALUES
                 (
-                    2,
                     ?,
                     ?,
                     ?
                 )
                 `,
                 [
-                    username,
-                    email,
-                    password
+                    courseId,
+                    title,
+                    description
                 ]
             );
 
@@ -54,4 +52,4 @@ const authService = {
     }
 };
 
-export default authService;
+export default topicService;
