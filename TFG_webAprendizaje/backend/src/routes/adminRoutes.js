@@ -1,31 +1,21 @@
-import { Router }
-from "express";
-
-import authMiddleware
-from "../middlewares/authMiddleware.js";
-
-import adminMiddleware
-from "../middlewares/adminMiddleware.js";
-
-import {
-    getDashboardStats,
-    getUsers
-}
-from "../controllers/adminController.js";
+import { Router } from "express";
+import authMiddleware from "../middlewares/authMiddleware.js";
+import roleMiddleware from "../middlewares/roleMiddleware.js";
+import {getDashboardStats, getUsers}from "../controllers/adminController.js";
 
 const router = Router();
 
 router.get(
     "/dashboard",
     authMiddleware,
-    adminMiddleware,
+    roleMiddleware("admin"),
     getDashboardStats
 );
 
 router.get(
     "/users",
     authMiddleware,
-    adminMiddleware,
+    roleMiddleware("admin"),
     getUsers
 );
 

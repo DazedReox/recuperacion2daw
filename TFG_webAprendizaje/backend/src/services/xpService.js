@@ -13,10 +13,7 @@ const xpService = {
             SET xp = xp + ?
             WHERE id = ?
             `,
-            [
-                xp,
-                userId
-            ]
+            [xp, userId]
         );
 
         const [rows] =
@@ -29,13 +26,31 @@ const xpService = {
                 [userId]
             );
 
-        return rows[0];
+        const currentXp =
+            rows[0].xp;
+
+        const level =
+            Math.floor(
+                currentXp / 1000
+            ) + 1;
+
+        await pool.query(
+            `
+            UPDATE usuarios
+            SET level = ?
+            WHERE id = ?
+            `,
+            [
+                level,
+                userId
+            ]
+        );
+
+        return {
+            xp: currentXp,
+            level
+        };
     }
 };
-
-const level =
-    Math.floor(
-        userXp / 1000
-    ) + 1;
 
 export default xpService;
