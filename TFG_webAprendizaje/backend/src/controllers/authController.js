@@ -100,12 +100,24 @@ const login = async (
             generateToken({
                 id: user.id,
                 role:
-                    user.role_id
+                    user.role_id === 1
+                        ? "admin"
+                        : "student"
             });
 
         res.json({
             token,
-            user
+            user: {
+                id: user.id,
+                username: user.username,
+                email: user.email,
+                role:
+                    user.role_id === 1
+                        ? "admin"
+                        : "student",
+                xp: user.xp,
+                level: user.level
+            }
         });
 
     } catch (error) {

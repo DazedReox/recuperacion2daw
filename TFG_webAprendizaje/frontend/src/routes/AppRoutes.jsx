@@ -47,6 +47,7 @@ function AppRoutes() {
             <Route path="/forum" element={<Forum />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/minigames" element={<Minigames />} />
+            <Route path="*" element={<NotFound />} />
         </Routes>
     );
 }

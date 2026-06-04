@@ -1,0 +1,9 @@
+{
+  "name": "learnquest",
+  "version": "1.0.0",
+
+  "scripts": {
+    "frontend": "cd frontend && npm run dev",
+    "backend": "cd backend && npm run dev"
+  }
+}
