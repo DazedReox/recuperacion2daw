@@ -1,32 +1,25 @@
-import pool from "../config/db.js";
+import pool
+from "../config/db.js";
 
 const statisticsService = {
 
-    updateStatistics: async (
+    getUserStats: async (
         userId
     ) => {
 
-        const [tests] =
+        const [[user]] =
             await pool.query(
                 `
-                SELECT COUNT(*) total
-                FROM resultados
-                WHERE user_id = ?
+                SELECT
+                    xp,
+                    level
+                FROM usuarios
+                WHERE id = ?
                 `,
                 [userId]
             );
 
-        await pool.query(
-            `
-            UPDATE estadisticas
-            SET tests_completed = ?
-            WHERE user_id = ?
-            `,
-            [
-                tests[0].total,
-                userId
-            ]
-        );
+        return user;
     }
 };
 

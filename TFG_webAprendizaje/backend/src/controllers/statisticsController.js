@@ -1,4 +1,5 @@
 import pool from "../config/db.js";
+import statisticsService from "../services/statisticsService.js";
 
 const getStatistics =
 async (
@@ -21,4 +22,32 @@ async (
 
 export {
     getStatistics
+};
+
+const getUserStats = async (
+    req,
+    res
+) => {
+
+    try {
+
+        const stats =
+            await statisticsService
+                .getUserStats(
+                    req.user.id
+                );
+
+        res.json(stats);
+
+    } catch (error) {
+
+        res.status(500).json({
+            message:
+                error.message
+        });
+    }
+};
+
+export {
+    getUserStats
 };

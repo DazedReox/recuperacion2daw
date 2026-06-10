@@ -36,6 +36,7 @@ const register = async (
                 password,
                 10
             );
+            console.log("HASH GENERADO:", hashedPassword);
 
         await authService.createUser(
             username,
@@ -81,13 +82,15 @@ const login = async (
                     "Credenciales inválidas"
             });
         }
-
-        const validPassword =
+            const validPassword =
             await bcrypt.compare(
                 password,
                 user.password
             );
 
+        console.log(
+            await bcrypt.hash(password, 10)
+        );
         if (!validPassword) {
 
             return res.status(401).json({
@@ -122,11 +125,14 @@ const login = async (
 
     } catch (error) {
 
-        res.status(500).json({
-            message:
-                error.message
-        });
-    }
+    console.error("LOGIN ERROR:");
+    console.error(error);
+
+    res.status(500).json({
+        message: error.message,
+        stack: error.stack
+    });
+}
 };
 
 export {

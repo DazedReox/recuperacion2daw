@@ -12,7 +12,7 @@ VALUES
     1,
     'admin',
     'admin@learnquest.com',
-    '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7Y4V4xK0Ff0xD6D3Z6M9wzW',
+    '$2b$10$k5w0r0n8E5ezzbPK8OgYLuPQsgGKEQqWCy69vIfAagTnyk4LP59Zy',
     0,
     1
 ),

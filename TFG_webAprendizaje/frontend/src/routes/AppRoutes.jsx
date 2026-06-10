@@ -13,6 +13,7 @@ import Achievements from "../pages/Achievements/Achievements";
 import Forum from "../pages/Forum/Forum";
 import Profile from "../pages/Profile/Profile";
 import Minigames from "../pages/Minigames/Minigames";
+import NotFound from "../pages/NotFound/NotFound";
 
 import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";

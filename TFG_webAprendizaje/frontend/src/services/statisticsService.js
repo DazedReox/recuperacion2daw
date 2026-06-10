@@ -28,6 +28,25 @@ const statisticsService = {
         );
 
         return response.data;
+    },
+
+    getMyStats: async () => {
+
+        const token =
+            localStorage.getItem("token");
+
+        const response =
+            await axios.get(
+                `${API_URL}/statistics/me`,
+                {
+                    headers: {
+                        Authorization:
+                            `Bearer ${token}`
+                    }
+                }
+            );
+
+        return response.data;
     }
 };
 

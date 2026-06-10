@@ -1,20 +1,14 @@
-import { Router }
-from "express";
+import express from "express";
+import {getUserStats} from "../controllers/statisticsController.js";
+import authMiddleware from "../middlewares/authMiddleware.js";
 
-import authMiddleware
-from "../middlewares/authMiddleware.js";
-
-import {
-    getStatistics
-}
-from "../controllers/statisticsController.js";
-
-const router = Router();
+const router =
+    express.Router();
 
 router.get(
-    "/",
+    "/me",
     authMiddleware,
-    getStatistics
+    getUserStats
 );
 
 export default router;
