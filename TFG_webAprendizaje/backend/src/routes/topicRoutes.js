@@ -10,6 +10,17 @@ from "../controllers/topicController.js";
 const router = Router();
 
 router.get(
+    "/test",
+    (req, res) => {
+
+        res.json({
+            message: "TOPIC ROUTE OK"
+        });
+
+    }
+);
+
+router.get(
     "/:courseId",
     getTopics
 );

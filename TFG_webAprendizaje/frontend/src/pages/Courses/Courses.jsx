@@ -1,54 +1,44 @@
-import MainLayout from "../../layouts/MainLayout";
+import {useEffect, useState} from "react";
+import {Link} from "react-router-dom";
+import coursesService from "../../services/courseService";
 
 function Courses() {
+    const [courses, setCourses] =
+        useState([]);
+    useEffect(() => {
+        loadCourses();
+    }, []);
+    const loadCourses = async () => {
 
-    const courses = [
-        {
-            id: 1,
-            title: "HTML",
-            topics: 10
-        },
-        {
-            id: 2,
-            title: "CSS",
-            topics: 8
-        },
-        {
-            id: 3,
-            title: "JavaScript",
-            topics: 15
-        }
-    ];
+        const data =
+            await coursesService
+                .getCourses();
 
+        setCourses(data);
+    };
     return (
-        <MainLayout>
-
+        <div className="p-6">
             <h1 className="text-3xl font-bold mb-6">
                 Cursos
             </h1>
-
-            <div className="grid md:grid-cols-3 gap-5">
-
+            <div className="grid md:grid-cols-3 gap-4">
                 {courses.map(course => (
-
-                    <div
+                    <Link
                         key={course.id}
-                        className="bg-white rounded-lg shadow p-5"
+                        to={`/courses/${course.id}`}
                     >
-                        <h2 className="font-bold text-xl">
-                            {course.title}
-                        </h2>
-
-                        <p>
-                            Temas: {course.topics}
-                        </p>
-                    </div>
-
+                        <div className="bg-white shadow rounded p-4">
+                            <h2 className="font-bold">
+                                {course.title}
+                            </h2>
+                            <p>
+                                {course.description}
+                            </p>
+                        </div>
+                    </Link>
                 ))}
-
             </div>
-
-        </MainLayout>
+        </div>
     );
 }
 

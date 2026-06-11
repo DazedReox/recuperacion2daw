@@ -12,6 +12,7 @@ const topicService = {
                 SELECT *
                 FROM temas
                 WHERE course_id = ?
+                ORDER BY position
                 `,
                 [courseId]
             );

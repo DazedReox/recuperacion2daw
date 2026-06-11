@@ -6,6 +6,8 @@ import authRoutes from "./routes/authRoutes.js";
 import forumRoutes from "./routes/forumRoutes.js";
 import rankingRoutes from "./routes/rankingRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
+import topicRoutes from "./routes/topicRoutes.js";
+import contentRoutes from "./routes/contentRoutes.js";
 
 const app = express();
 
@@ -17,4 +19,6 @@ app.use("/api/tests", testRoutes);
 app.use("/api/forum", forumRoutes);
 app.use("/api/ranking", rankingRoutes);
 app.use("/api/admin", adminRoutes);
+app.use("/api/topics", topicRoutes);
+app.use("/api/contents", contentRoutes);
 export default app;

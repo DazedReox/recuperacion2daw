@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
 import app from "./app.js";
 import pool from "./config/db.js";
+import statisticsRoutes from "./routes/statisticsRoutes.js";
 
 dotenv.config();
 

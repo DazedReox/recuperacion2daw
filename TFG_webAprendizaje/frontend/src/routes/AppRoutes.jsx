@@ -14,6 +14,7 @@ import Forum from "../pages/Forum/Forum";
 import Profile from "../pages/Profile/Profile";
 import Minigames from "../pages/Minigames/Minigames";
 import NotFound from "../pages/NotFound/NotFound";
+import TopicDetail from "../pages/TopicDetail/TopicDetail";
 
 import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
@@ -48,6 +49,7 @@ function AppRoutes() {
             <Route path="/forum" element={<Forum />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/minigames" element={<Minigames />} />
+            <Route path="/topics/:id" element={<TopicDetail />} />
             <Route path="*" element={<NotFound />} />
         </Routes>
     );

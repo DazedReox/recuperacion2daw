@@ -6,7 +6,7 @@ const contentService = {
     getContentByTopic: async (topicId) => {
 
         const response = await axios.get(
-            `${API_URL}/contents/${topicId}`
+            `${API_URL}/contents/topic/${topicId}`
         );
 
         return response.data;
