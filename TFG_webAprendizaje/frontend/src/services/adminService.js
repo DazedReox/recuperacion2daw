@@ -5,27 +5,40 @@ const adminService = {
 
     getUsers: async () => {
 
-        const response = await axios.get(
-            `${API_URL}/admin/users`
-        );
+        const token =
+            localStorage.getItem("token");
 
-        return response.data;
-    },
-
-    deleteUser: async (id) => {
-
-        const response = await axios.delete(
-            `${API_URL}/admin/users/${id}`
-        );
+        const response =
+            await axios.get(
+                `${API_URL}/admin/users`,
+                {
+                    headers: {
+                        Authorization:
+                            `Bearer ${token}`
+                    }
+                }
+            );
 
         return response.data;
     },
 
     getDashboardStats: async () => {
 
-        const response = await axios.get(
-            `${API_URL}/admin/dashboard`
-        );
+        const token =
+            localStorage.getItem(
+                "token"
+            );
+
+        const response =
+            await axios.get(
+                `${API_URL}/admin/dashboard`,
+                {
+                    headers: {
+                        Authorization:
+                            `Bearer ${token}`
+                    }
+                }
+            );
 
         return response.data;
     }

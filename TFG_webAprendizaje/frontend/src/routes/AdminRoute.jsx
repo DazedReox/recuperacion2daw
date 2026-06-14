@@ -1,15 +1,36 @@
-import { Navigate } from "react-router-dom";
-import { useAuth } from "../hooks/useAuth";
+import { Navigate }
+from "react-router-dom";
 
-function AdminRoute({ children }) {
+import { useAuth }
+from "../hooks/useAuth";
 
-    const { user } = useAuth();
+function AdminRoute({
+    children
+}) {
+
+    const {
+        user,
+        loading
+    } = useAuth();
+
+    if (loading)
+        return <p>Cargando...</p>;
 
     if (!user)
-        return <Navigate to="/login" />;
+        return (
+            <Navigate
+                to="/login"
+            />
+        );
 
-    if (user.role !== "admin")
-        return <Navigate to="/dashboard" />;
+    if (
+        user.role !== "admin"
+    )
+        return (
+            <Navigate
+                to="/dashboard"
+            />
+        );
 
     return children;
 }

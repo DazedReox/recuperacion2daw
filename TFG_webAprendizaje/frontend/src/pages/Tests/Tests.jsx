@@ -1,25 +1,65 @@
+import {useEffect, useState} from "react";
 import MainLayout from "../../layouts/MainLayout";
+import testService from "../../services/testService";
+import { Link } from "react-router-dom";
 
 function Tests() {
 
+    const [tests, setTests] =
+        useState([]);
+
+    useEffect(() => {
+
+        loadTests();
+
+    }, []);
+
+    const loadTests = async () => {
+
+        const data =
+            await testService.getTests();
+
+        setTests(data);
+    };
+
     return (
+
         <MainLayout>
 
             <h1 className="text-3xl font-bold mb-6">
                 Cuestionarios
             </h1>
 
-            <div className="bg-white p-5 rounded shadow">
+            <div className="space-y-4">
 
-                <h2 className="font-bold mb-4">
-                    Test HTML Básico
-                </h2>
+                {tests.map(test => (
 
-                <button
-                    className="bg-indigo-600 text-white px-4 py-2 rounded"
-                >
-                    Comenzar
-                </button>
+                    <div
+                        key={test.id}
+                        className="bg-white p-5 rounded shadow"
+                    >
+
+                        <h2 className="font-bold">
+
+                            {test.title}
+
+                        </h2>
+
+                        <p>
+
+                            {test.description}
+
+                        </p>
+                        <Link
+                            to={`/tests/${test.id}`}
+                            className="text-indigo-600 font-semibold"
+                        >
+                            Realizar test
+                        </Link>
+
+                    </div>
+
+                ))}
 
             </div>
 

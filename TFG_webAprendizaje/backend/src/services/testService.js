@@ -14,7 +14,8 @@ const testService = {
 
     getById: async (id) => {
 
-        const [rows] = await pool.query(
+    const [tests] =
+        await pool.query(
             `
             SELECT *
             FROM tests
@@ -23,8 +24,42 @@ const testService = {
             [id]
         );
 
-        return rows[0];
-    },
+    if (!tests.length)
+        return null;
+
+    const test = tests[0];
+
+    const [questions] =
+        await pool.query(
+            `
+            SELECT *
+            FROM preguntas
+            WHERE test_id = ?
+            `,
+            [id]
+        );
+
+    for (const question of questions) {
+
+        const [answers] =
+            await pool.query(
+                `
+                SELECT *
+                FROM respuestas
+                WHERE question_id = ?
+                `,
+                [question.id]
+            );
+
+        question.answers =
+            answers;
+    }
+
+    test.questions =
+        questions;
+
+    return test;
+},
 
     getQuestions: async (testId) => {
 
@@ -78,7 +113,58 @@ const testService = {
             );
 
         return result;
+    },
+    getFullTest: async (id) => {
+
+    const [tests] =
+        await pool.query(
+            `
+            SELECT *
+            FROM tests
+            WHERE id = ?
+            `,
+            [id]
+        );
+
+    const test = tests[0];
+
+    if (!test)
+        return null;
+
+    const [questions] =
+        await pool.query(
+            `
+            SELECT *
+            FROM preguntas
+            WHERE test_id = ?
+            `,
+            [id]
+        );
+
+    for (const question of questions) {
+
+        const [answers] =
+            await pool.query(
+                `
+                SELECT
+                    id,
+                    answer,
+                    is_correct
+                FROM respuestas
+                WHERE question_id = ?
+                `,
+                [question.id]
+            );
+
+        question.answers =
+            answers;
     }
+
+    test.questions =
+        questions;
+
+    return test;
+}
 };
 
 export default testService;

@@ -20,9 +20,9 @@ const getTest = async (
 ) => {
 
     const test =
-        await testService.getById(
-            req.params.id
-        );
+    await testService.getFullTest(
+        req.params.id
+    );
 
     res.json(test);
 };
@@ -31,6 +31,8 @@ const submitTest = async (
     req,
     res
 ) => {
+
+    console.log("BODY:",req.body);
 
     try {
 
@@ -65,7 +67,8 @@ const submitTest = async (
         );
 
         await statisticsService.updateStatistics(
-            userId
+            userId,
+            score
         );
 
         res.json({

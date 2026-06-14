@@ -23,13 +23,54 @@ const testService = {
 
     submitTest: async (
         testId,
-        answers
+        score,
+        correctAnswers,
+        totalQuestions
     ) => {
+        
+        const token =
+            localStorage.getItem("token");
 
-        const response = await axios.post(
-            `${API_URL}/tests/${testId}/submit`,
-            { answers }
-        );
+        const response =
+            await axios.post(
+                `${API_URL}/tests/submit`,
+                {
+                    testId,
+                    score,
+                    correctAnswers,
+                    totalQuestions
+                },
+                {
+                    headers: {
+                        Authorization:
+                            `Bearer ${token}`
+                    }
+                }
+            );
+
+        return response.data;
+    },
+    submitResult: async (result) => {
+
+        const token =
+            localStorage.getItem(
+                "token"
+            );
+
+        const response =
+            await axios.post(
+
+                `${API_URL}/tests/submit`,
+
+                result,
+
+                {
+                    headers: {
+                        Authorization:
+                            `Bearer ${token}`
+                    }
+                }
+            );
 
         return response.data;
     }
