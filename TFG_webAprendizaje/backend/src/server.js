@@ -12,13 +12,14 @@ pool.query("SELECT 1")
     .then(() => console.log("MySQL conectado"))
     .catch(console.error);
 
+app.use(
+    "/api/statistics",
+    statisticsRoutes
+);
+
 app.listen(PORT, () => {
 
     console.log(
         `Servidor ejecutándose en puerto ${PORT}`
     );
 });
-app.use(
-    "/api/statistics",
-    statisticsRoutes
-);
