@@ -51,11 +51,7 @@ function Ranking() {
                         <div
                             key={user.id}
                             className="
-                                bg-white
-                                shadow
-                                rounded
-                                p-4
-                            "
+                                bg-white rounded-xl shadow-md p-5"
                         >
 
                             <strong>

@@ -36,8 +36,13 @@ function Tests() {
 
                     <div
                         key={test.id}
-                        className="bg-white p-5 rounded shadow"
-                    >
+                        className="
+                            bg-white
+                            rounded-xl
+                            shadow-md
+                            hover:shadow-lg
+                            transition
+                            p-6">
 
                         <h2 className="font-bold">
 
@@ -52,8 +57,12 @@ function Tests() {
                         </p>
                         <Link
                             to={`/tests/${test.id}`}
-                            className="text-indigo-600 font-semibold"
-                        >
+                            className="
+                                inline-block
+                                mt-4
+                                text-indigo-600
+                                font-bold
+                            ">
                             Realizar test
                         </Link>
 

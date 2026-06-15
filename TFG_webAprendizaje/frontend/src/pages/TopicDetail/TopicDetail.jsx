@@ -42,22 +42,28 @@ function TopicDetail() {
 
                 <div
                     key={content.id}
-                    className="bg-white shadow rounded p-5 mb-5"
-                >
-
+                    className="
+                        bg-white
+                        rounded-xl
+                        shadow-lg
+                        p-8
+                        mb-6">
+                    
                     <h2 className="text-xl font-bold mb-3">
 
                         {content.title}
 
                     </h2>
-
                     <div
+                        className="
+                            prose
+                            max-w-none
+                            mt-4"
+                        
                         dangerouslySetInnerHTML={{
-                            __html:
-                                content.content
+                            __html: content.content
                         }}
                     />
-
                 </div>
 
             ))}

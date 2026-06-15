@@ -57,21 +57,22 @@ function CourseDetail() {
     return (
 
         <MainLayout>
+            <div
+                className="
+                    bg-gradient-to-r
+                    from-indigo-600
+                    to-purple-600
+                    text-white
+                    p-8
+                    rounded-xl
+                    mb-6">
+                <h1 className="text-4xl font-bold">
+                    {course.title}
+                </h1>
 
-            <h1 className="text-3xl font-bold mb-4">
-
-                {course.title}
-
-            </h1>
-
-            <div className="bg-white rounded-lg shadow p-5">
-
-                <p className="mb-4">
-
+                <p className="mt-3">
                     {course.description}
-
                 </p>
-
             </div>
 
             <h2 className="text-xl font-bold mt-6 mb-3">

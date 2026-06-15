@@ -3,69 +3,51 @@ import { useAuth } from "../../hooks/useAuth";
 
 function Navbar() {
 
-    const { user } =
-        useAuth();
+    const { user } = useAuth();
 
     return (
 
-        <nav className="bg-indigo-600 text-white px-6 py-4">
+        <nav className="bg-slate-900 text-white">
 
-            <div className="container mx-auto flex justify-between items-center">
+            <div className="container mx-auto flex justify-between items-center px-6 py-4">
 
-                <h1 className="font-bold text-xl">
+                <Link
+                    to="/"
+                    className="text-2xl font-bold"
+                >
                     LearnQuest
-                </h1>
+                </Link>
 
-                <div className="flex gap-4">
+                <div className="flex gap-6">
 
-                    <Link to="/">
-                        Inicio
+                    <Link to="/courses">
+                        Cursos
                     </Link>
 
-                    {user && (
-                        <>
-                            <Link to="/dashboard">
-                                Dashboard
-                            </Link>
+                    <Link to="/tests">
+                        Tests
+                    </Link>
 
-                            <Link to="/courses">
-                                Cursos
-                            </Link>
+                    <Link to="/ranking">
+                        Ranking
+                    </Link>
 
-                            <Link to="/tests">
-                                Tests
-                            </Link>
+                    <Link to="/statistics">
+                        Estadísticas
+                    </Link>
 
-                            <Link to="/ranking">
-                                Ranking
-                            </Link>
+                    {user ? (
 
-                            <Link to="/statistics">
-                                Estadísticas
-                            </Link>
+                        <Link to="/dashboard">
+                            Dashboard
+                        </Link>
 
-                            <Link to="/profile">
-                                Perfil
-                            </Link>
+                    ) : (
 
-                            {user.role === "admin" && (
-                                <Link to="/admin">
-                                    Admin
-                                </Link>
-                            )}
-                        </>
-                    )}
+                        <Link to="/login">
+                            Login
+                        </Link>
 
-                    {!user && (
-                        <>
-                            <Link to="/login">
-                                Login
-                            </Link>
-
-                            <Link to="/register">
-                                Registro
-                            </Link>
-                        </>
                     )}
 
                 </div>

@@ -8,47 +8,32 @@ function Dashboard() {
 
         <div className="p-6">
 
-            <h1 className="text-3xl font-bold mb-6">
+            <h1 className="text-4xl font-bold mb-8">
                 Bienvenido, {user?.username}
             </h1>
 
-            <div className="grid md:grid-cols-4 gap-4">
+            <div className="grid md:grid-cols-3 gap-6">
 
-                <div className="bg-white shadow rounded p-4">
-                    <h3 className="font-semibold">
-                        Nivel
-                    </h3>
-                    <p className="text-2xl">
-                        {user?.level || 1}
-                    </p>
-                </div>
+            <div className="bg-indigo-600 text-white p-6 rounded-xl">
+                <h3>Nivel</h3>
+                <p className="text-4xl font-bold">
+                    {user?.level}
+                </p>
+            </div>
 
-                <div className="bg-white shadow rounded p-4">
-                    <h3 className="font-semibold">
-                        XP
-                    </h3>
-                    <p className="text-2xl">
-                        {user?.xp || 0}
-                    </p>
-                </div>
+            <div className="bg-green-600 text-white p-6 rounded-xl">
+                <h3>XP Total</h3>
+                <p className="text-4xl font-bold">
+                    {user?.xp}
+                </p>
+            </div>
 
-                <div className="bg-white shadow rounded p-4">
-                    <h3 className="font-semibold">
-                        Cursos
-                    </h3>
-                    <p className="text-2xl">
-                        0
-                    </p>
-                </div>
-
-                <div className="bg-white shadow rounded p-4">
-                    <h3 className="font-semibold">
-                        Logros
-                    </h3>
-                    <p className="text-2xl">
-                        0
-                    </p>
-                </div>
+            <div className="bg-slate-800 text-white p-6 rounded-xl">
+                <h3>Progreso</h3>
+                <p className="text-4xl font-bold">
+                    {user?.xp % 1000}/1000
+                </p>
+            </div>
 
             </div>
 

@@ -47,51 +47,63 @@ function Statistics() {
 
             </h1>
 
-            <div className="grid md:grid-cols-4 gap-4">
+            <div className="grid md:grid-cols-5 gap-4">
 
-                <div className="bg-white p-5 rounded shadow">
+                <div className="bg-white rounded-xl shadow-md p-6 text-center">
 
                     <h3 className="font-bold">
                         Nivel
                     </h3>
 
-                    <p>
+                    <p className="text-4xl font-bold mt-2">
                         {stats.level}
                     </p>
 
                 </div>
 
-                <div className="bg-white p-5 rounded shadow">
+                <div className="bg-white rounded-xl shadow-md p-6 text-center">
 
                     <h3 className="font-bold">
                         XP Total
                     </h3>
 
-                    <p>
+                    <p className="text-4xl font-bold mt-2">
                         {stats.xp}
                     </p>
 
                 </div>
 
-                <div className="bg-white p-5 rounded shadow">
+                <div className="bg-white rounded-xl shadow-md p-6 text-center">
+
+                    <h3 className="font-bold">
+                        Horas de estudio
+                    </h3>
+
+                    <p className="text-4xl font-bold mt-2">
+                        {stats.study_hours}
+                    </p>
+
+                </div>
+
+                <div className="bg-white rounded-xl shadow-md p-6 text-center">
 
                     <h3 className="font-bold">
                         Tests realizados
                     </h3>
 
-                    <p>
+                    <p className="text-4xl font-bold mt-2">
                         {stats.tests_completed}
                     </p>
 
                 </div>
 
-                <div className="bg-white p-5 rounded shadow">
+                <div className="bg-white rounded-xl shadow-md p-6 text-center">
 
                     <h3 className="font-bold">
                         % Aciertos
                     </h3>
 
-                    <p>
+                    <p className="text-4xl font-bold mt-2">
                         {Math.round(
                             stats.success_rate || 0
                         )}

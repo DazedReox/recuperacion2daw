@@ -3,11 +3,12 @@ import { API_URL } from "../utils/constants";
 
 const contentService = {
 
-    getContentByTopic: async (topicId) => {
+    getByTopic: async (topicId) => {
 
-        const response = await axios.get(
-            `${API_URL}/contents/topic/${topicId}`
-        );
+        const response =
+            await axios.get(
+                `${API_URL}/contents/topic/${topicId}`
+            );
 
         return response.data;
     },

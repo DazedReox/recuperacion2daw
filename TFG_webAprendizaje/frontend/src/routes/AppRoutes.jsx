@@ -9,10 +9,7 @@ import Courses from "../pages/Courses/Courses";
 import CourseDetail from "../pages/CourseDetail/CourseDetail";
 import Tests from "../pages/Tests/Tests";
 import Statistics from "../pages/Statistics/Statistics";
-import Achievements from "../pages/Achievements/Achievements";
-import Forum from "../pages/Forum/Forum";
 import Profile from "../pages/Profile/Profile";
-import Minigames from "../pages/Minigames/Minigames";
 import NotFound from "../pages/NotFound/NotFound";
 import TopicDetail from "../pages/TopicDetail/TopicDetail";
 import TestDetail from "../pages/TestDetail/TestDetail";
@@ -47,10 +44,7 @@ function AppRoutes() {
             <Route path="/courses/:id" element={<CourseDetail />} />
             <Route path="/tests" element={<Tests />} />
             <Route path="/statistics" element={<Statistics />} />
-            <Route path="/achievements" element={<Achievements />} />
-            <Route path="/forum" element={<Forum />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/minigames" element={<Minigames />} />
             <Route path="/ranking" element={<Ranking />}/>
             <Route path="/topics/:id" element={<TopicDetail />} />
             <Route path="/tests/:id" element={<TestDetail />}/>
