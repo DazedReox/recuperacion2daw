@@ -109,8 +109,6 @@
 Modo oscuro/claro
 Diseño responsive
 
-Frontend (React + Tailwind) -> API REST --> Backend (Node.js + Express) --> Base de Datos (MySQL)
-
 
 Inicio
 Login
@@ -122,8 +120,6 @@ Listado
 Detalle Curso
 
 Cuestionarios
-
-Minijuegos
 
 Logros
 
