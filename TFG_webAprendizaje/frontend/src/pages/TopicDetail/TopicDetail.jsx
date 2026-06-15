@@ -32,41 +32,43 @@ function TopicDetail() {
 
         <MainLayout>
 
-            <h1 className="text-3xl font-bold mb-6">
+            <div className="page-container">
 
-                Contenido del tema
+                <h1 className="section-title">
 
-            </h1>
+                    Contenido del tema
 
-            {contents.map(content => (
+                </h1>
 
-                <div
-                    key={content.id}
-                    className="
-                        bg-white
-                        rounded-xl
-                        shadow-lg
-                        p-8
-                        mb-6">
-                    
-                    <h2 className="text-xl font-bold mb-3">
+                <div className="space-y-6">
 
-                        {content.title}
+                    {contents.map(content => (
 
-                    </h2>
-                    <div
-                        className="
-                            prose
-                            max-w-none
-                            mt-4"
-                        
-                        dangerouslySetInnerHTML={{
-                            __html: content.content
-                        }}
-                    />
+                        <div
+                            key={content.id}
+                            className="card"
+                        >
+
+                            <h2 className="card-title">
+
+                                {content.title}
+
+                            </h2>
+
+                            <div
+                                className="prose max-w-none text-slate-600"
+                                dangerouslySetInnerHTML={{
+                                    __html: content.content
+                                }}
+                            />
+
+                        </div>
+
+                    ))}
+
                 </div>
 
-            ))}
+            </div>
 
         </MainLayout>
     );

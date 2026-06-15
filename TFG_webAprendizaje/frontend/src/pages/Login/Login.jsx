@@ -56,57 +56,71 @@ function Login() {
 
         <AuthLayout>
 
-            <h2 className="text-2xl font-bold mb-5">
-                Iniciar Sesión
-            </h2>
+            <div className="form-wrapper">
 
-            {error && (
+                <h2 className="section-title text-center">
+                    Iniciar Sesión
+                </h2>
 
-                <div className="bg-red-100 text-red-700 p-2 rounded mb-4">
+                {error && (
 
-                    {error}
+                    <div className="alert-error">
 
-                </div>
+                        {error}
 
-            )}
+                    </div>
 
-            <form
-                onSubmit={handleSubmit}
-                className="space-y-4"
-            >
+                )}
 
-                <input
-                    type="email"
-                    placeholder="Email"
-                    value={email}
-                    onChange={(e) =>
-                        setEmail(
-                            e.target.value
-                        )
-                    }
-                    className="w-full border p-2 rounded"
-                />
-
-                <input
-                    type="password"
-                    placeholder="Contraseña"
-                    value={password}
-                    onChange={(e) =>
-                        setPassword(
-                            e.target.value
-                        )
-                    }
-                    className="w-full border p-2 rounded"
-                />
-
-                <button
-                    type="submit"
-                    className="w-full bg-indigo-600 text-white py-2 rounded"
+                <form
+                    onSubmit={handleSubmit}
+                    className="space-y-4"
                 >
-                    Entrar
-                </button>
 
-            </form>
+                    <div>
+                        <label className="label-field">
+                            Email
+                        </label>
+                        <input
+                            type="email"
+                            placeholder="tu@email.com"
+                            value={email}
+                            onChange={(e) =>
+                                setEmail(
+                                    e.target.value
+                                )
+                            }
+                            className="input-field"
+                        />
+                    </div>
+
+                    <div>
+                        <label className="label-field">
+                            Contraseña
+                        </label>
+                        <input
+                            type="password"
+                            placeholder="••••••••"
+                            value={password}
+                            onChange={(e) =>
+                                setPassword(
+                                    e.target.value
+                                )
+                            }
+                            className="input-field"
+                        />
+                    </div>
+
+                    <button
+                        type="submit"
+                        className="btn-primary w-full"
+                    >
+                        Entrar
+                    </button>
+
+                </form>
+
+            </div>
 
         </AuthLayout>
     );

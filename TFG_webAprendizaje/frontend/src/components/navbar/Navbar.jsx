@@ -7,50 +7,46 @@ function Navbar() {
 
     return (
 
-        <nav className="bg-slate-900 text-white">
+        <nav className="navbar">
 
-            <div className="container mx-auto flex justify-between items-center px-6 py-4">
+            <Link
+                to="/"
+                className="navbar-logo"
+            >
+                LearnQuest
+            </Link>
 
-                <Link
-                    to="/"
-                    className="text-2xl font-bold"
-                >
-                    LearnQuest
+            <div className="flex items-center gap-6">
+
+                <Link to="/courses" className="navbar-link">
+                    Cursos
                 </Link>
 
-                <div className="flex gap-6">
+                <Link to="/tests" className="navbar-link">
+                    Tests
+                </Link>
 
-                    <Link to="/courses">
-                        Cursos
+                <Link to="/ranking" className="navbar-link">
+                    Ranking
+                </Link>
+
+                <Link to="/statistics" className="navbar-link">
+                    Estadísticas
+                </Link>
+
+                {user ? (
+
+                    <Link to="/dashboard" className="btn-primary">
+                        Dashboard
                     </Link>
 
-                    <Link to="/tests">
-                        Tests
+                ) : (
+
+                    <Link to="/login" className="btn-secondary">
+                        Login
                     </Link>
 
-                    <Link to="/ranking">
-                        Ranking
-                    </Link>
-
-                    <Link to="/statistics">
-                        Estadísticas
-                    </Link>
-
-                    {user ? (
-
-                        <Link to="/dashboard">
-                            Dashboard
-                        </Link>
-
-                    ) : (
-
-                        <Link to="/login">
-                            Login
-                        </Link>
-
-                    )}
-
-                </div>
+                )}
 
             </div>
 

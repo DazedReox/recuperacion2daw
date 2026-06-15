@@ -2,23 +2,23 @@ import { Link } from "react-router-dom";
 
 function CourseCard({ course }) {
     return (
-        <div className="bg-white dark:bg-slate-800 rounded-xl shadow p-5">
+        <div className="card flex flex-col">
 
-            <h2 className="text-xl font-bold mb-2">
+            <h2 className="card-title">
                 {course.title}
             </h2>
 
-            <p className="text-gray-500 mb-4">
+            <p className="card-subtitle">
                 {course.description}
             </p>
 
-            <p className="mb-4">
-                Temas: {course.topics}
-            </p>
+            <span className="badge-level mb-4 self-start">
+                {course.topics} temas
+            </span>
 
             <Link
                 to={`/courses/${course.id}`}
-                className="bg-indigo-600 text-white px-4 py-2 rounded"
+                className="btn-primary mt-auto text-center"
             >
                 Ver Curso
             </Link>

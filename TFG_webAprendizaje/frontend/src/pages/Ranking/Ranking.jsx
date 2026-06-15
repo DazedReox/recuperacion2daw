@@ -30,51 +30,70 @@ function Ranking() {
             setUsers(data);
         };
 
+    const rankBadgeClass = (position) => {
+
+        if (position === 1) return "badge-rank-1";
+        if (position === 2) return "badge-rank-2";
+        if (position === 3) return "badge-rank-3";
+
+        return "badge-level";
+    };
+
     return (
 
         <MainLayout>
 
-            <h1 className="text-3xl font-bold mb-6">
+            <div className="page-container">
 
-                Ranking Global
+                <h1 className="section-title">
 
-            </h1>
+                    Ranking Global
 
-            <div className="space-y-3">
+                </h1>
 
-                {users.map(
-                    (
-                        user,
-                        index
-                    ) => (
+                <div className="space-y-3">
 
-                        <div
-                            key={user.id}
-                            className="
-                                bg-white rounded-xl shadow-md p-5"
-                        >
+                    {users.map(
+                        (
+                            user,
+                            index
+                        ) => (
 
-                            <strong>
+                            <div
+                                key={user.id}
+                                className="card flex items-center justify-between"
+                            >
 
-                                #{index + 1}
+                                <div className="flex items-center gap-4">
 
-                            </strong>
+                                    <span className={rankBadgeClass(index + 1)}>
+                                        #{index + 1}
+                                    </span>
 
-                            {" "}
-                            {user.username}
+                                    <span className="font-semibold text-slate-800">
+                                        {user.username}
+                                    </span>
 
-                            {" - "}
+                                </div>
 
-                            Nivel {user.level}
+                                <div className="flex items-center gap-3">
 
-                            {" - "}
+                                    <span className="badge-level">
+                                        Nivel {user.level}
+                                    </span>
 
-                            {user.xp} XP
+                                    <span className="badge-xp">
+                                        {user.xp} XP
+                                    </span>
 
-                        </div>
+                                </div>
 
-                    )
-                )}
+                            </div>
+
+                        )
+                    )}
+
+                </div>
 
             </div>
 

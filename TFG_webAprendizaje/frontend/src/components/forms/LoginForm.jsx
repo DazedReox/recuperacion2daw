@@ -21,29 +21,33 @@ function LoginForm({ onSubmit }) {
             className="space-y-4"
         >
 
-            <input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) =>
-                    setEmail(e.target.value)
-                }
-                className="w-full border p-2 rounded"
-            />
+            <div>
+                <label className="label-field">Email</label>
+                <input
+                    type="email"
+                    placeholder="tu@email.com"
+                    value={email}
+                    onChange={(e) =>
+                        setEmail(e.target.value)
+                    }
+                    className="input-field"
+                />
+            </div>
 
-            <input
-                type="password"
-                placeholder="Contraseña"
-                value={password}
-                onChange={(e) =>
-                    setPassword(e.target.value)
-                }
-                className="w-full border p-2 rounded"
-            />
+            <div>
+                <label className="label-field">Contraseña</label>
+                <input
+                    type="password"
+                    placeholder="••••••••"
+                    value={password}
+                    onChange={(e) =>
+                        setPassword(e.target.value)
+                    }
+                    className="input-field"
+                />
+            </div>
 
-            <button
-                className="w-full bg-indigo-600 text-white py-2 rounded"
-            >
+            <button className="btn-primary w-full">
                 Entrar
             </button>
 

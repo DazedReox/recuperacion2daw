@@ -49,7 +49,9 @@ function CourseDetail() {
 
         return (
             <MainLayout>
-                <p>Cargando...</p>
+                <div className="page-container">
+                    <p className="loading-state">Cargando...</p>
+                </div>
             </MainLayout>
         );
     }
@@ -57,58 +59,56 @@ function CourseDetail() {
     return (
 
         <MainLayout>
-            <div
-                className="
-                    bg-gradient-to-r
-                    from-indigo-600
-                    to-purple-600
-                    text-white
-                    p-8
-                    rounded-xl
-                    mb-6">
-                <h1 className="text-4xl font-bold">
-                    {course.title}
-                </h1>
 
-                <p className="mt-3">
-                    {course.description}
-                </p>
-            </div>
+            <div className="page-container">
 
-            <h2 className="text-xl font-bold mt-6 mb-3">
+                <div className="banner-gradient">
+                    <h1 className="text-3xl md:text-4xl font-bold">
+                        {course.title}
+                    </h1>
 
-                Temas
+                    <p className="mt-3 text-indigo-100">
+                        {course.description}
+                    </p>
+                </div>
 
-            </h2>
+                <h2 className="section-title">
 
-            <div className="space-y-3">
+                    Temas
 
-                {topics.map(topic => (
+                </h2>
 
-                    <div
-                        key={topic.id}
-                        className="bg-white shadow rounded p-3"
-                    >
+                <div className="space-y-3">
 
-                        <h3 className="font-semibold">
+                    {topics.map(topic => (
 
-                            <Link
-                                to={`/topics/${topic.id}`}
-                            >
-                                {topic.title}
-                            </Link>
+                        <div
+                            key={topic.id}
+                            className="card"
+                        >
 
-                        </h3>
+                            <h3 className="card-title mb-1">
 
-                        <p>
+                                <Link
+                                    to={`/topics/${topic.id}`}
+                                    className="hover:text-indigo-600 transition-colors"
+                                >
+                                    {topic.title}
+                                </Link>
 
-                            {topic.description}
+                            </h3>
 
-                        </p>
+                            <p className="text-slate-500 text-sm">
 
-                    </div>
+                                {topic.description}
 
-                ))}
+                            </p>
+
+                        </div>
+
+                    ))}
+
+                </div>
 
             </div>
 

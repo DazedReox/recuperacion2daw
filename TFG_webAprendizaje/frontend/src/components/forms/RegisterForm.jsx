@@ -30,32 +30,39 @@ function RegisterForm({ onSubmit }) {
             className="space-y-4"
         >
 
-            <input
-                name="username"
-                placeholder="Usuario"
-                onChange={handleChange}
-                className="w-full border p-2 rounded"
-            />
+            <div>
+                <label className="label-field">Usuario</label>
+                <input
+                    name="username"
+                    placeholder="Tu nombre de usuario"
+                    onChange={handleChange}
+                    className="input-field"
+                />
+            </div>
 
-            <input
-                name="email"
-                type="email"
-                placeholder="Email"
-                onChange={handleChange}
-                className="w-full border p-2 rounded"
-            />
+            <div>
+                <label className="label-field">Email</label>
+                <input
+                    name="email"
+                    type="email"
+                    placeholder="tu@email.com"
+                    onChange={handleChange}
+                    className="input-field"
+                />
+            </div>
 
-            <input
-                name="password"
-                type="password"
-                placeholder="Contraseña"
-                onChange={handleChange}
-                className="w-full border p-2 rounded"
-            />
+            <div>
+                <label className="label-field">Contraseña</label>
+                <input
+                    name="password"
+                    type="password"
+                    placeholder="••••••••"
+                    onChange={handleChange}
+                    className="input-field"
+                />
+            </div>
 
-            <button
-                className="w-full bg-green-600 text-white py-2 rounded"
-            >
+            <button className="btn-primary w-full">
                 Registrarse
             </button>
 

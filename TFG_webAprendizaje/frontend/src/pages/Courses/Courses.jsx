@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import coursesService from "../../services/courseService";
+import MainLayout from "../../layouts/MainLayout";
 
 function Courses() {
     const [courses, setCourses] =
@@ -17,54 +18,36 @@ function Courses() {
         setCourses(data);
     };
     return (
-    <div className="p-6">
 
-        <h1 className="text-3xl font-bold mb-6">
+    <MainLayout>
+
+    <div className="page-container">
+
+        <h1 className="section-title">
             Cursos
         </h1>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid-cards">
 
             {courses.map(course => (
 
                 <Link
                     key={course.id}
                     to={`/courses/${course.id}`}
+                    className="card flex flex-col h-full"
                 >
 
-                    <div
-                        className="
-                            bg-white
-                            rounded-xl
-                            shadow-md
-                            hover:shadow-xl
-                            transition
-                            p-6
-                            border
-                            h-full"
-                    >
+                    <h2 className="card-title">
+                        {course.title}
+                    </h2>
 
-                        <h2 className="font-bold text-xl mb-3">
-                            {course.title}
-                        </h2>
+                    <p className="card-subtitle flex-1">
+                        {course.description}
+                    </p>
 
-                        <p className="text-slate-600 mb-4">
-                            {course.description}
-                        </p>
-
-                        <span
-                            className="
-                                inline-block
-                                bg-indigo-600
-                                text-white
-                                px-4
-                                py-2
-                                rounded"
-                        >
-                            Ver curso
-                        </span>
-
-                    </div>
+                    <span className="btn-primary mt-2 text-center">
+                        Ver curso
+                    </span>
 
                 </Link>
 
@@ -73,6 +56,8 @@ function Courses() {
         </div>
 
     </div>
+
+    </MainLayout>
 );
 }
 

@@ -26,49 +26,45 @@ function Tests() {
 
         <MainLayout>
 
-            <h1 className="text-3xl font-bold mb-6">
-                Cuestionarios
-            </h1>
+            <div className="page-container">
 
-            <div className="space-y-4">
+                <h1 className="section-title">
+                    Cuestionarios
+                </h1>
 
-                {tests.map(test => (
+                <div className="space-y-4">
 
-                    <div
-                        key={test.id}
-                        className="
-                            bg-white
-                            rounded-xl
-                            shadow-md
-                            hover:shadow-lg
-                            transition
-                            p-6">
+                    {tests.map(test => (
 
-                        <h2 className="font-bold">
+                        <div
+                            key={test.id}
+                            className="card"
+                        >
 
-                            {test.title}
+                            <h2 className="card-title">
 
-                        </h2>
+                                {test.title}
 
-                        <p>
+                            </h2>
 
-                            {test.description}
+                            <p className="card-subtitle">
 
-                        </p>
-                        <Link
-                            to={`/tests/${test.id}`}
-                            className="
-                                inline-block
-                                mt-4
-                                text-indigo-600
-                                font-bold
-                            ">
-                            Realizar test
-                        </Link>
+                                {test.description}
 
-                    </div>
+                            </p>
 
-                ))}
+                            <Link
+                                to={`/tests/${test.id}`}
+                                className="btn-link"
+                            >
+                                Realizar test →
+                            </Link>
+
+                        </div>
+
+                    ))}
+
+                </div>
 
             </div>
 

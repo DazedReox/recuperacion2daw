@@ -33,7 +33,9 @@ function Statistics() {
     if (!stats)
         return (
             <MainLayout>
-                <p>Cargando...</p>
+                <div className="page-container">
+                    <p className="loading-state">Cargando...</p>
+                </div>
             </MainLayout>
         );
 
@@ -41,74 +43,78 @@ function Statistics() {
 
         <MainLayout>
 
-            <h1 className="text-3xl font-bold mb-6">
+            <div className="page-container">
 
-                Estadísticas
+                <h1 className="section-title">
 
-            </h1>
+                    Estadísticas
 
-            <div className="grid md:grid-cols-5 gap-4">
+                </h1>
 
-                <div className="bg-white rounded-xl shadow-md p-6 text-center">
+                <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
 
-                    <h3 className="font-bold">
-                        Nivel
-                    </h3>
+                    <div className="stat-card">
 
-                    <p className="text-4xl font-bold mt-2">
-                        {stats.level}
-                    </p>
+                        <p className="stat-label">
+                            Nivel
+                        </p>
 
-                </div>
+                        <p className="stat-value">
+                            {stats.level}
+                        </p>
 
-                <div className="bg-white rounded-xl shadow-md p-6 text-center">
+                    </div>
 
-                    <h3 className="font-bold">
-                        XP Total
-                    </h3>
+                    <div className="stat-card">
 
-                    <p className="text-4xl font-bold mt-2">
-                        {stats.xp}
-                    </p>
+                        <p className="stat-label">
+                            XP Total
+                        </p>
 
-                </div>
+                        <p className="stat-value">
+                            {stats.xp}
+                        </p>
 
-                <div className="bg-white rounded-xl shadow-md p-6 text-center">
+                    </div>
 
-                    <h3 className="font-bold">
-                        Horas de estudio
-                    </h3>
+                    <div className="stat-card">
 
-                    <p className="text-4xl font-bold mt-2">
-                        {stats.study_hours}
-                    </p>
+                        <p className="stat-label">
+                            Horas de estudio
+                        </p>
 
-                </div>
+                        <p className="stat-value">
+                            {stats.study_hours}
+                        </p>
 
-                <div className="bg-white rounded-xl shadow-md p-6 text-center">
+                    </div>
 
-                    <h3 className="font-bold">
-                        Tests realizados
-                    </h3>
+                    <div className="stat-card">
 
-                    <p className="text-4xl font-bold mt-2">
-                        {stats.tests_completed}
-                    </p>
+                        <p className="stat-label">
+                            Tests realizados
+                        </p>
 
-                </div>
+                        <p className="stat-value">
+                            {stats.tests_completed}
+                        </p>
 
-                <div className="bg-white rounded-xl shadow-md p-6 text-center">
+                    </div>
 
-                    <h3 className="font-bold">
-                        % Aciertos
-                    </h3>
+                    <div className="stat-card">
 
-                    <p className="text-4xl font-bold mt-2">
-                        {Math.round(
-                            stats.success_rate || 0
-                        )}
-                        %
-                    </p>
+                        <p className="stat-label">
+                            % Aciertos
+                        </p>
+
+                        <p className="stat-value">
+                            {Math.round(
+                                stats.success_rate || 0
+                            )}
+                            %
+                        </p>
+
+                    </div>
 
                 </div>
 

@@ -6,73 +6,77 @@ function Home() {
     return (
         <MainLayout>
 
-            <section className="text-center py-20">
+            <div className="page-container">
 
-                <h1 className="text-6xl font-bold mb-6">
-                    LearnQuest
-                </h1>
+                <section className="hero">
 
-                <p className="text-xl text-slate-600 mb-8">
-                    Aprende programación de forma gamificada,
-                    completa cursos, supera tests y gana experiencia.
-                </p>
+                    <h1 className="hero-title">
+                        LearnQuest
+                    </h1>
 
-                <div className="flex justify-center gap-4">
-
-                    <Link
-                        to="/register"
-                        className="bg-indigo-600 text-white px-6 py-3 rounded-lg"
-                    >
-                        Empezar Gratis
-                    </Link>
-
-                    <Link
-                        to="/courses"
-                        className="border px-6 py-3 rounded-lg"
-                    >
-                        Ver Cursos
-                    </Link>
-
-                </div>
-
-            </section>
-
-            <section className="grid md:grid-cols-3 gap-6">
-
-                <div className="bg-white p-6 rounded-xl shadow">
-                    <h3 className="font-bold text-xl mb-3">
-                        Cursos
-                    </h3>
-
-                    <p>
-                        Aprende HTML, CSS, JavaScript,
-                        React y SQL.
+                    <p className="hero-subtitle">
+                        Aprende programación de forma gamificada,
+                        completa cursos, supera tests y gana experiencia.
                     </p>
-                </div>
 
-                <div className="bg-white p-6 rounded-xl shadow">
-                    <h3 className="font-bold text-xl mb-3">
-                        Tests
-                    </h3>
+                    <div className="flex justify-center gap-4">
 
-                    <p>
-                        Evalúa tus conocimientos
-                        y mejora tus resultados.
-                    </p>
-                </div>
+                        <Link
+                            to="/register"
+                            className="btn-primary"
+                        >
+                            Empezar Gratis
+                        </Link>
 
-                <div className="bg-white p-6 rounded-xl shadow">
-                    <h3 className="font-bold text-xl mb-3">
-                        Ranking
-                    </h3>
+                        <Link
+                            to="/courses"
+                            className="btn-secondary"
+                        >
+                            Ver Cursos
+                        </Link>
 
-                    <p>
-                        Compite con otros estudiantes
-                        y sube posiciones.
-                    </p>
-                </div>
+                    </div>
 
-            </section>
+                </section>
+
+                <section className="grid-cards">
+
+                    <div className="card">
+                        <h3 className="card-title">
+                            Cursos
+                        </h3>
+
+                        <p className="card-subtitle">
+                            Aprende HTML, CSS, JavaScript,
+                            React y SQL.
+                        </p>
+                    </div>
+
+                    <div className="card">
+                        <h3 className="card-title">
+                            Tests
+                        </h3>
+
+                        <p className="card-subtitle">
+                            Evalúa tus conocimientos
+                            y mejora tus resultados.
+                        </p>
+                    </div>
+
+                    <div className="card">
+                        <h3 className="card-title">
+                            Ranking
+                        </h3>
+
+                        <p className="card-subtitle">
+                            Compite con otros estudiantes
+                            y sube posiciones.
+                        </p>
+                    </div>
+
+                </section>
+
+            </div>
 
         </MainLayout>
     );

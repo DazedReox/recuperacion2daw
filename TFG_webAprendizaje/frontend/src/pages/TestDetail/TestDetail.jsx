@@ -112,7 +112,9 @@ function TestDetail() {
     if (!test)
         return (
             <MainLayout>
-                Cargando...
+                <div className="page-container">
+                    <p className="loading-state">Cargando...</p>
+                </div>
             </MainLayout>
         );
 
@@ -120,114 +122,119 @@ function TestDetail() {
 
         <MainLayout>
 
-            <h1 className="text-3xl font-bold mb-4">
+            <div className="page-container">
 
-                {test.title}
+                <h1 className="section-title mb-2">
 
-            </h1>
+                    {test.title}
 
-            <p className="mb-6">
+                </h1>
 
-                {test.description}
+                <p className="text-slate-500 mb-6">
 
-            </p>
+                    {test.description}
 
-            {test.questions.map(question => (
+                </p>
 
-                <div
-                    key={question.id}
-                    className="bg-white shadow rounded p-4 mb-4"
-                >
+                <div className="space-y-4">
 
-                    <h3 className="font-bold mb-3">
+                    {test.questions.map(question => (
 
-                        {question.question}
-
-                    </h3>
-
-                    {question.answers.map(answer => (
-
-                        <label
-                            key={answer.id}
-                            className="block"
+                        <div
+                            key={question.id}
+                            className="card"
                         >
 
-                            <input
-                                type="radio"
-                                name={`q${question.id}`}
-                                value={answer.id}
-                                onChange={() =>
-                                    setAnswers({
-                                        ...answers,
-                                        [question.id]:
-                                            answer.id
-                                    })
-                                }
-                            />
+                            <h3 className="font-semibold text-slate-800 mb-3">
 
-                            {" "}
-                            {answer.answer}
+                                {question.question}
 
-                        </label>
+                            </h3>
+
+                            <div className="space-y-2">
+
+                                {question.answers.map(answer => (
+
+                                    <label
+                                        key={answer.id}
+                                        className="flex items-center gap-2 px-3 py-2 rounded-xl
+                                                   border border-slate-100 hover:bg-slate-50
+                                                   cursor-pointer transition-colors"
+                                    >
+
+                                        <input
+                                            type="radio"
+                                            name={`q${question.id}`}
+                                            value={answer.id}
+                                            className="accent-indigo-600"
+                                            onChange={() =>
+                                                setAnswers({
+                                                    ...answers,
+                                                    [question.id]:
+                                                        answer.id
+                                                })
+                                            }
+                                        />
+
+                                        <span className="text-slate-700">
+                                            {answer.answer}
+                                        </span>
+
+                                    </label>
+
+                                ))}
+
+                            </div>
+
+                        </div>
 
                     ))}
 
                 </div>
 
-            ))}
-            <button
-                onClick={finishTest}
-                className="
-                    bg-indigo-600
-                    text-white
-                    px-4
-                    py-2
-                    rounded
-                "
-            >
-
-                Finalizar Test
-
-            </button>
-            {result && (
-
-                <div
-                    className="
-                        mt-6
-                        bg-green-100
-                        p-4
-                        rounded
-                    "
+                <button
+                    onClick={finishTest}
+                    className="btn-primary mt-6"
                 >
 
-                    <h3 className="font-bold">
+                    Finalizar Test
 
-                        Resultado
+                </button>
 
-                    </h3>
+                {result && (
 
-                    <p>
+                    <div className="alert-success mt-6">
 
-                        Correctas:
-                        {" "}
-                        {result.correct}
-                        /
-                        {result.total}
+                        <h3 className="font-bold mb-1">
 
-                    </p>
+                            Resultado
 
-                    <p>
+                        </h3>
 
-                        Nota:
-                        {" "}
-                        {result.score}
-                        %
+                        <p>
 
-                    </p>
+                            Correctas:
+                            {" "}
+                            {result.correct}
+                            /
+                            {result.total}
 
-                </div>
+                        </p>
 
-            )}
+                        <p>
+
+                            Nota:
+                            {" "}
+                            {result.score}
+                            %
+
+                        </p>
+
+                    </div>
+
+                )}
+
+            </div>
 
         </MainLayout>
     );
