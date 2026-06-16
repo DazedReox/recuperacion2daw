@@ -1,4 +1,4 @@
-import Navbar from "../components/navbar/Navbar";
+import Navbar from "../components/navbar/Navbar.jsx";
 import Footer from "../components/footer/Footer";
 
 function MainLayout({ children }) {

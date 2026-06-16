@@ -56,40 +56,25 @@ function Register() {
     };
 
     return (
-
         <AuthLayout>
-
             <div className="form-wrapper">
-
                 <h2 className="section-title text-center">
                     Registro
                 </h2>
-
                 {error && (
-
                     <div className="alert-error">
-
                         {error}
-
                     </div>
-
                 )}
-
                 {success && (
-
                     <div className="alert-success">
-
                         {success}
-
                     </div>
-
                 )}
-
                 <form
                     onSubmit={handleSubmit}
                     className="space-y-4"
                 >
-
                     <div>
                         <label className="label-field">
                             Usuario
@@ -106,7 +91,6 @@ function Register() {
                             className="input-field"
                         />
                     </div>
-
                     <div>
                         <label className="label-field">
                             Email
@@ -123,7 +107,6 @@ function Register() {
                             className="input-field"
                         />
                     </div>
-
                     <div>
                         <label className="label-field">
                             Contraseña
@@ -140,18 +123,14 @@ function Register() {
                             className="input-field"
                         />
                     </div>
-
                     <button
                         type="submit"
                         className="btn-primary w-full"
                     >
                         Registrarse
                     </button>
-
                 </form>
-
             </div>
-
         </AuthLayout>
     );
 }

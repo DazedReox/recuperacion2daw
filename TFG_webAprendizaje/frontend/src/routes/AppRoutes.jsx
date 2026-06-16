@@ -32,14 +32,26 @@ function AppRoutes() {
                     </PrivateRoute>
                 }
             />
-            <Route
-                path="/admin"
-                element={
-                    <AdminRoute>
+            <Route path="/admin" element={ 
+                <AdminRoute>
                         <AdminPanel />
-                    </AdminRoute>
-                }
-            />
+                </AdminRoute>
+            }/>
+            <Route path="/admin/users" element={ 
+                <AdminRoute>
+                    <div className="p-8"><h1>Gestión de Usuarios (Próximamente)</h1></div>
+                </AdminRoute>
+            }/>
+            <Route path="/admin/courses" element={ 
+                <AdminRoute>
+                    <div className="p-8"><h1>Gestión de Cursos (Próximamente)</h1></div>
+                </AdminRoute>
+            }/>
+            <Route path="/admin/tests" element={ 
+                <AdminRoute>
+                    <div className="p-8"><h1>Gestión de Tests (Próximamente)</h1></div>
+                </AdminRoute>
+            }/>
             <Route path="/courses" element={<Courses />} />
             <Route path="/courses/:id" element={<CourseDetail />} />
             <Route path="/tests" element={<Tests />} />

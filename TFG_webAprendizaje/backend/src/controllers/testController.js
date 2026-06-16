@@ -1,6 +1,5 @@
 import testService from "../services/testService.js";
 import xpService from "../services/xpService.js";
-import achievementService from "../services/achievementService.js";
 import statisticsService from "../services/statisticsService.js";
 
 const getTests = async (
@@ -60,10 +59,6 @@ const submitTest = async (
         await xpService.addXp(
             userId,
             earnedXp
-        );
-
-        await achievementService.checkAchievements(
-            userId
         );
 
         await statisticsService.updateStatistics(

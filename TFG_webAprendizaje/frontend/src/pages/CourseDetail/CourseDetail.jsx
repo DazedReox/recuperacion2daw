@@ -57,61 +57,40 @@ function CourseDetail() {
     }
 
     return (
-
         <MainLayout>
-
             <div className="page-container">
-
                 <div className="banner-gradient">
                     <h1 className="text-3xl md:text-4xl font-bold">
                         {course.title}
                     </h1>
-
                     <p className="mt-3 text-indigo-100">
                         {course.description}
                     </p>
                 </div>
-
                 <h2 className="section-title">
-
                     Temas
-
                 </h2>
-
                 <div className="space-y-3">
-
                     {topics.map(topic => (
-
                         <div
                             key={topic.id}
                             className="card"
                         >
-
                             <h3 className="card-title mb-1">
-
                                 <Link
                                     to={`/topics/${topic.id}`}
                                     className="hover:text-indigo-600 transition-colors"
                                 >
                                     {topic.title}
                                 </Link>
-
                             </h3>
-
                             <p className="text-slate-500 text-sm">
-
                                 {topic.description}
-
                             </p>
-
                         </div>
-
                     ))}
-
                 </div>
-
             </div>
-
         </MainLayout>
     );
 }

@@ -1,17 +1,7 @@
-import {
-    useEffect,
-    useState
-} from "react";
-
-import {
-    useParams
-} from "react-router-dom";
-
-import testService
-from "../../services/testService";
-
-import MainLayout
-from "../../layouts/MainLayout";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import testService from "../../services/testService";
+import MainLayout from "../../layouts/MainLayout";
 
 function TestDetail() {
 
@@ -98,7 +88,6 @@ function TestDetail() {
             test.questions.length
 
     });
-
 } catch (error) {
 
     console.error(
@@ -119,49 +108,29 @@ function TestDetail() {
         );
 
     return (
-
         <MainLayout>
-
             <div className="page-container">
-
                 <h1 className="section-title mb-2">
-
                     {test.title}
-
                 </h1>
-
                 <p className="text-slate-500 mb-6">
-
                     {test.description}
-
                 </p>
-
                 <div className="space-y-4">
-
                     {test.questions.map(question => (
-
                         <div
                             key={question.id}
-                            className="card"
-                        >
-
+                            className="card">
                             <h3 className="font-semibold text-slate-800 mb-3">
-
                                 {question.question}
-
                             </h3>
-
                             <div className="space-y-2">
-
                                 {question.answers.map(answer => (
-
                                     <label
                                         key={answer.id}
                                         className="flex items-center gap-2 px-3 py-2 rounded-xl
                                                    border border-slate-100 hover:bg-slate-50
-                                                   cursor-pointer transition-colors"
-                                    >
-
+                                                   cursor-pointer transition-colors">
                                         <input
                                             type="radio"
                                             name={`q${question.id}`}
@@ -175,67 +144,42 @@ function TestDetail() {
                                                 })
                                             }
                                         />
-
                                         <span className="text-slate-700">
                                             {answer.answer}
                                         </span>
-
                                     </label>
-
                                 ))}
-
                             </div>
-
                         </div>
-
                     ))}
-
                 </div>
-
                 <button
                     onClick={finishTest}
-                    className="btn-primary mt-6"
-                >
+                    className="btn-primary mt-6">
 
                     Finalizar Test
-
                 </button>
-
                 {result && (
-
                     <div className="alert-success mt-6">
-
                         <h3 className="font-bold mb-1">
-
                             Resultado
-
                         </h3>
-
                         <p>
-
                             Correctas:
                             {" "}
                             {result.correct}
                             /
                             {result.total}
-
                         </p>
-
                         <p>
-
                             Nota:
                             {" "}
                             {result.score}
                             %
-
                         </p>
-
                     </div>
-
                 )}
-
             </div>
-
         </MainLayout>
     );
 }

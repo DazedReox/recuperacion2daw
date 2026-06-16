@@ -40,63 +40,42 @@ function Ranking() {
     };
 
     return (
-
         <MainLayout>
-
             <div className="page-container">
-
                 <h1 className="section-title">
-
                     Ranking Global
-
                 </h1>
-
                 <div className="space-y-3">
-
                     {users.map(
                         (
                             user,
                             index
                         ) => (
-
                             <div
                                 key={user.id}
                                 className="card flex items-center justify-between"
                             >
-
                                 <div className="flex items-center gap-4">
-
                                     <span className={rankBadgeClass(index + 1)}>
                                         #{index + 1}
                                     </span>
-
                                     <span className="font-semibold text-slate-800">
                                         {user.username}
                                     </span>
-
                                 </div>
-
                                 <div className="flex items-center gap-3">
-
                                     <span className="badge-level">
                                         Nivel {user.level}
                                     </span>
-
                                     <span className="badge-xp">
                                         {user.xp} XP
                                     </span>
-
                                 </div>
-
                             </div>
-
-                        )
+                        )   
                     )}
-
                 </div>
-
             </div>
-
         </MainLayout>
     );
 }

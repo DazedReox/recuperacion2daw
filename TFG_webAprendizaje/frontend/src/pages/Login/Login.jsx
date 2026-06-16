@@ -53,30 +53,20 @@ function Login() {
     };
 
     return (
-
         <AuthLayout>
-
             <div className="form-wrapper">
-
                 <h2 className="section-title text-center">
                     Iniciar Sesión
                 </h2>
-
                 {error && (
-
                     <div className="alert-error">
-
                         {error}
-
                     </div>
-
                 )}
-
                 <form
                     onSubmit={handleSubmit}
                     className="space-y-4"
                 >
-
                     <div>
                         <label className="label-field">
                             Email
@@ -93,7 +83,6 @@ function Login() {
                             className="input-field"
                         />
                     </div>
-
                     <div>
                         <label className="label-field">
                             Contraseña
@@ -110,18 +99,14 @@ function Login() {
                             className="input-field"
                         />
                     </div>
-
                     <button
                         type="submit"
                         className="btn-primary w-full"
                     >
                         Entrar
                     </button>
-
                 </form>
-
             </div>
-
         </AuthLayout>
     );
 }
